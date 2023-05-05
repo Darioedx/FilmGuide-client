@@ -27295,27 +27295,35 @@ const MainView = ()=>{
     const [books, setBooks] = (0, _react.useState)([
         {
             id: 1,
-            title: "Eloquent JavaScript",
+            title: "Good Fellas",
             image: "https://pics.filmaffinity.com/goodfellas-343032101-mmed.jpg",
-            author: "Marijn Haverbeke"
+            director: "Martin Scorsese",
+            plot: "A tale of greed, deception, money, power, and murder occur between two best friends: a mafia enforcer and a casino executive compete against each other over a gambling empire, and over a fast-living and fast-loving socialite.",
+            genre: "Crime/Gangster"
         },
         {
             id: 2,
             title: "Mastering JavaScript Functional Programming",
             image: "https://images-na.ssl-images-amazon.com/images/I/51WAikRq37L._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
-            author: "Federico Kereki"
+            director: "Martin Scorsese",
+            plot: "",
+            genre: ""
         },
         {
             id: 3,
             title: "JavaScript: The Good Parts",
             image: "https://images-na.ssl-images-amazon.com/images/I/5131OWtQRaL._SX381_BO1,204,203,200_.jpg",
-            author: "Douglas Crockford"
+            director: "Douglas Crockford",
+            plot: "",
+            genre: ""
         },
         {
             id: 4,
             title: "JavaScript: The Definitive Guide",
             image: "https://images-na.ssl-images-amazon.com/images/I/51HbNW6RzhL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
-            author: "David Flanagan"
+            director: "David Flanagan",
+            plot: "",
+            genre: "crime/gangster"
         },
         {
             id: 5,
@@ -27330,14 +27338,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedBook(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 47,
+        lineNumber: 52,
         columnNumber: 7
     }, undefined);
     if (books.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 52,
+        lineNumber: 57,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27348,16 +27356,16 @@ const MainView = ()=>{
                 }
             }, book.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 58,
+                lineNumber: 63,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 56,
+        lineNumber: 61,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "1kiesJxHgj+rVm0H+lk9ADuUxGQ=");
+_s(MainView, "Qri/pkW5LO0xj0Qk8oVlA8JZrLc=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27481,14 +27489,14 @@ const BookView = ({ book , onBackClick  })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: "Author: "
+                        children: "Director: "
                     }, void 0, false, {
                         fileName: "src/components/book-view/book-view.jsx",
                         lineNumber: 12,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: book.author
+                        children: book.director
                     }, void 0, false, {
                         fileName: "src/components/book-view/book-view.jsx",
                         lineNumber: 13,
@@ -27506,6 +27514,66 @@ const BookView = ({ book , onBackClick  })=>{
             }, void 0, false, {
                 fileName: "src/components/book-view/book-view.jsx",
                 lineNumber: 15,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "Genre: "
+                    }, void 0, false, {
+                        fileName: "src/components/book-view/book-view.jsx",
+                        lineNumber: 17,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: book.genre
+                    }, void 0, false, {
+                        fileName: "src/components/book-view/book-view.jsx",
+                        lineNumber: 18,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/book-view/book-view.jsx",
+                lineNumber: 16,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: onBackClick,
+                children: "Back"
+            }, void 0, false, {
+                fileName: "src/components/book-view/book-view.jsx",
+                lineNumber: 20,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "Plot: "
+                    }, void 0, false, {
+                        fileName: "src/components/book-view/book-view.jsx",
+                        lineNumber: 22,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: book.plot
+                    }, void 0, false, {
+                        fileName: "src/components/book-view/book-view.jsx",
+                        lineNumber: 23,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/book-view/book-view.jsx",
+                lineNumber: 21,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: onBackClick,
+                children: "Back"
+            }, void 0, false, {
+                fileName: "src/components/book-view/book-view.jsx",
+                lineNumber: 25,
                 columnNumber: 7
             }, undefined)
         ]
