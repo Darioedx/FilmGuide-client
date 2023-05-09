@@ -27312,7 +27312,7 @@ const MainView = ()=>{
         {
             id: 3,
             title: "Rosemary's Baby",
-            image: "https://pics.filmaffinity.com/rosemary_s_baby-673657233-large.jpg",
+            image: "https://pics.filmaffinity.com/rosemary_s_baby-673657233-mmed.jpg",
             director: "Roman Polanski",
             plot: "A couple settles in a New York apartment without suspecting that their elderly neighbors belong to a satanic sect.",
             genre: "Horror/Occult"
@@ -27351,7 +27351,7 @@ const MainView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "5WpnMQDKzGZEXf8gr5JA3QDheJo=");
+_s(MainView, "LLppt6csqLM+SZcl4L8+AW7YY0s=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
