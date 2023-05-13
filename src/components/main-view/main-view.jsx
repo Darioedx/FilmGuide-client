@@ -20,7 +20,7 @@ export const MainView = () => {
             id: data._id,
             title: data.Title,
             image:data.Imgpath,
-            genre:data.Genre.Name.map((number) =>  <li>{number}</li>),//cambiar a string en db
+            genre:data.Genre.Name.map((number) =>  <span>{number}</span>),
             director: data.Director.Name,
             plot: data.Plot,
             actors:data.Actors.map((number) =>  <li>{number}</li>),
@@ -36,7 +36,7 @@ export const MainView = () => {
 
   if (selectedMovie) {
     return (
-      <MovieView  movie={selectedMovie} bio={selectedDirector} onBackClick={() => setSelectedMovie(null)}  onDirector={()=>setSelectedDirector(selectedMovie.bio)}/>
+      <MovieView  movie={selectedMovie}  bio={selectedDirector} onBackClick={() => setSelectedMovie(null)}  onDirector={()=>setSelectedDirector(selectedMovie.bio)}/>
     );
   }
 

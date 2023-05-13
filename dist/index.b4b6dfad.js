@@ -27302,7 +27302,7 @@ const MainView = ()=>{
                     id: data._id,
                     title: data.Title,
                     image: data.Imgpath,
-                    genre: data.Genre.Name.map((number)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                    genre: data.Genre.Name.map((number)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                             children: number
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
@@ -27399,9 +27399,10 @@ MovieCard.propTypes = {
         title: (0, _propTypesDefault.default).string.isRequired,
         image: (0, _propTypesDefault.default).string.isRequired,
         director: (0, _propTypesDefault.default).string.isRequired,
-        genre: (0, _propTypesDefault.default).shape([
-            (0, _propTypesDefault.default).string
-        ]),
+        genre: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string,
+            Description: (0, _propTypesDefault.default).string
+        }),
         bio: (0, _propTypesDefault.default).string,
         actors: (0, _propTypesDefault.default).shape([
             (0, _propTypesDefault.default).string
@@ -28205,7 +28206,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MovieView", ()=>MovieView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
-const MovieView = ({ movie , onBackClick , onDirector , bio  })=>{
+const MovieView = ({ movie , onBackClick , onDirector , bio , biokey  })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
