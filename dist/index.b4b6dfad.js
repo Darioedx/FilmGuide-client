@@ -27302,21 +27302,15 @@ const MainView = ()=>{
                     id: data._id,
                     title: data.Title,
                     image: data.Imgpath,
-                    genre: data.Genre.Name.map((number)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                            children: number
-                        }, void 0, false, {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 23,
-                            columnNumber: 52
-                        }, undefined)),
+                    genre: data.Genre.Name,
                     director: data.Director.Name,
                     plot: data.Plot,
-                    actors: data.Actors.map((number)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                    actors: data.Actors.map((number, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                             children: number
-                        }, void 0, false, {
+                        }, index, false, {
                             fileName: "src/components/main-view/main-view.jsx",
                             lineNumber: 26,
-                            columnNumber: 49
+                            columnNumber: 56
                         }, undefined)),
                     bio: data.Director.Bio
                 };
@@ -27338,7 +27332,7 @@ const MainView = ()=>{
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 44,
+        lineNumber: 45,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27349,12 +27343,12 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 50,
+                lineNumber: 51,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 48,
+        lineNumber: 49,
         columnNumber: 5
     }, undefined);
 };
@@ -27399,14 +27393,8 @@ MovieCard.propTypes = {
         title: (0, _propTypesDefault.default).string.isRequired,
         image: (0, _propTypesDefault.default).string.isRequired,
         director: (0, _propTypesDefault.default).string.isRequired,
-        genre: (0, _propTypesDefault.default).shape({
-            Name: (0, _propTypesDefault.default).string,
-            Description: (0, _propTypesDefault.default).string
-        }),
-        bio: (0, _propTypesDefault.default).string,
-        actors: (0, _propTypesDefault.default).shape([
-            (0, _propTypesDefault.default).string
-        ])
+        //genre:PropTypes.shape({Name:PropTypes.string.isRequired}),
+        bio: (0, _propTypesDefault.default).string
     }).isRequired,
     onMovieClick: (0, _propTypesDefault.default).func.isRequired
 };
@@ -28206,7 +28194,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MovieView", ()=>MovieView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
-const MovieView = ({ movie , onBackClick , onDirector , bio , biokey  })=>{
+const MovieView = ({ movie , onBackClick , onDirector , bio  })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -28335,7 +28323,7 @@ const MovieView = ({ movie , onBackClick , onDirector , bio , biokey  })=>{
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: movie.actors
-                    }, void 0, false, {
+                    }, movie.id, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 29,
                         columnNumber: 9
