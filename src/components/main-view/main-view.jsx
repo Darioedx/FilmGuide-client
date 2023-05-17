@@ -25,6 +25,7 @@ export const MainView = () => {
             plot: data.Plot,
             actors:data.Actors.map((number, index) =>  <li key={index}>{number}</li>),
             bio: data.Director.Bio,
+            description: data.Genre.Description
             
           };
           
@@ -35,10 +36,17 @@ export const MainView = () => {
      }, []);
 
   if (selectedMovie) {
-    return (
+    const genreToFilter = selectedMovie.genre[0];
+    const similarMovies = movies.filter(movie => movie.genre.includes(genreToFilter));
+    console.log(selectedMovie.genre[0])
+    return (<>
       <MovieView  movie={selectedMovie}  bio={selectedDirector} onBackClick={() => setSelectedMovie(null)}  
       onDirector={()=>setSelectedDirector(selectedMovie.bio)}/>
-    );
+      
+      <hr/>
+      <h2>Similar movies</h2>
+      {similarMovies.map((movie) => (<MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => {setSelectedMovie(newSelectedMovie);}}/>))}
+    </>);
   }
 
   if (movies.length === 0) {
