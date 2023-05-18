@@ -1,43 +1,55 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+
+
 export const MainView = () => {
-  const [movies, setMovies] = useState([
-    {
-      id: 1,
-      title: "Good Fellas",
-      image:"https://pics.filmaffinity.com/goodfellas-343032101-mmed.jpg",   
-      director: "Martin Scorsese",
-      plot:"A tale of greed, deception, money, power, and murder occur between two best friends: a mafia enforcer and a casino executive compete against each other over a gambling empire, and over a fast-living and fast-loving socialite.",
-      genre:"Crime/Gangster"
-    },
-    {
-      id: 2,
-      title: "The Big Lebowski",
-      image:"https://pics.filmaffinity.com/the_big_lebowski-877217211-mmed.jpg",
-      director: "Joel Coen",
-      plot:"Ultimate L.A. slacker Jeff \"The Dude\" Lebowski, mistaken for a millionaire of the same name, seeks restitution for a rug ruined by debt collectors, enlisting his bowling buddies for help while trying to find the millionaire\'s missing wife.",
-      genre:"Black Comedy"
-    },
-    {
-      id: 3,
-      title: "Rosemary's Baby",
-      image:"https://pics.filmaffinity.com/rosemary_s_baby-673657233-mmed.jpg",
-      director: "Roman Polanski",
-      plot:"A couple settles in a New York apartment without suspecting that their elderly neighbors belong to a satanic sect.",
-      genre:"Horror/Occult"
-    },
-   
-    
-  ]);
+  const [movies, setMovies] = useState([]);
 
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const[selectedDirector, setSelectedDirector] = useState(null);
+
+  useEffect(() => {
+    fetch("https://movies-guide.herokuapp.com/movies")
+    .then((response) => response.json())
+      .then((data) => {
+        const moviesFromApi = data.map((data) => {
+          
+          return {
+            id: data._id,
+            title: data.Title,
+            image:data.Imgpath,
+            genre:data.Genre.Name,
+            director: data.Director.Name,
+            plot: data.Plot,
+            actors:data.Actors.map((actor, index) =>  <li key={index}>{actor}</li>),
+            bio: data.Director.Bio,
+            description: data.Genre.Description
+            
+          };
+          
+        });
+
+        setMovies(moviesFromApi);
+      });
+     }, []);
 
   if (selectedMovie) {
-    return (
-      <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-    );
+    const genreToFilter = selectedMovie.genre[0];
+    let similarMovies = movies.filter(movie => movie.genre.includes(genreToFilter));   
+    similarMovies = similarMovies.filter(function (movie) {
+      return movie.title !== selectedMovie.title;
+  });
+    return (<>
+      <MovieView  movie={selectedMovie}  bio={selectedDirector} onBackClick={() =>{ setSelectedMovie(null);setSelectedDirector(null)}}  
+      onDirector={()=>setSelectedDirector(selectedMovie.bio)}/>
+      
+      <hr/>
+      <h2>Similar movies</h2>
+      {similarMovies.map((movie) => (<MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => 
+        {setSelectedMovie(newSelectedMovie);setSelectedDirector(null)}}/>))}
+    </>);
   }
 
   if (movies.length === 0) {
