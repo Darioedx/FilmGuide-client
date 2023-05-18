@@ -23,7 +23,7 @@ export const MainView = () => {
             genre:data.Genre.Name,
             director: data.Director.Name,
             plot: data.Plot,
-            actors:data.Actors.map((number, index) =>  <li key={index}>{number}</li>),
+            actors:data.Actors.map((actor, index) =>  <li key={index}>{actor}</li>),
             bio: data.Director.Bio,
             description: data.Genre.Description
             
@@ -37,15 +37,18 @@ export const MainView = () => {
 
   if (selectedMovie) {
     const genreToFilter = selectedMovie.genre[0];
-    const similarMovies = movies.filter(movie => movie.genre.includes(genreToFilter));
-    console.log(selectedMovie.genre[0])
+    let similarMovies = movies.filter(movie => movie.genre.includes(genreToFilter));   
+    similarMovies = similarMovies.filter(function (movie) {
+      return movie.title !== selectedMovie.title;
+  });
     return (<>
-      <MovieView  movie={selectedMovie}  bio={selectedDirector} onBackClick={() => setSelectedMovie(null)}  
+      <MovieView  movie={selectedMovie}  bio={selectedDirector} onBackClick={() =>{ setSelectedMovie(null);setSelectedDirector(null)}}  
       onDirector={()=>setSelectedDirector(selectedMovie.bio)}/>
       
       <hr/>
       <h2>Similar movies</h2>
-      {similarMovies.map((movie) => (<MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => {setSelectedMovie(newSelectedMovie);}}/>))}
+      {similarMovies.map((movie) => (<MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => 
+        {setSelectedMovie(newSelectedMovie);setSelectedDirector(null)}}/>))}
     </>);
   }
 
