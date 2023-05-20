@@ -28622,7 +28622,7 @@ const SignupView = ()=>{
             Email: email,
             Birthday: birthday
         };
-        fetch("SIGNUP_URL", {
+        fetch("https://movies-guide.herokuapp.com/users", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
