@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Button, Card } from "react-bootstrap";
 export const MovieView = ({ movie, onBackClick,onDirector, bio}) => {
   return (
     <div>
