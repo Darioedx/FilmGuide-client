@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import "bootstrap/dist/css/bootstrap.min.css";//import react bt
+
 import Container from 'react-bootstrap/Container'
 // Import statement to indicate that you need to bundle `./index.scss`
 import "./index.scss";
@@ -9,7 +9,7 @@ import { MainView } from "./components/main-view/main-view";
 const App = () => {
   
   return (
-    <Container style={{border: "1px solid red"}}>
+    <Container style={{border: "3px solid #8b7e07"}}>
       <MainView />
     </Container>
   );

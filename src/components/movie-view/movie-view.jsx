@@ -1,13 +1,18 @@
 import PropTypes from "prop-types";
+import { arrayOf } from "prop-types";
 import { Button, Card } from "react-bootstrap";
-export const MovieView = ({ movie, onBackClick,onDirector, bio}) => {
+let genreToFilter;
+let similarMovies;
+export const MovieView = ({similar, movie, onBackClick,onDirector, bio}) => {
+   
+            
   return (
     <div>
       <div>
         <img src={movie.image} />
       </div>
       <div>
-        <span>Title: </span>
+        <span >Title: </span>
         <span>{movie.title}</span>
       </div>
       <div>
@@ -28,7 +33,7 @@ export const MovieView = ({ movie, onBackClick,onDirector, bio}) => {
      
       <div>
         <span>Actors: </span>
-        <span key={movie.id}>{movie.actors}</span>
+        <span >{movie.actors}</span>
       </div>
       <button onClick={onBackClick}>Back</button>
      

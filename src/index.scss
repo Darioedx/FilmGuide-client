@@ -1,5 +1,24 @@
+
+$primary: #b4a202;
+$body-bg: hsl(0, 90%, 19%);
+$body-color:$primary;
+
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+
 $color: steelblue;
 
 .my-flix {
   color: $color;
+}
+img {
+  width: 60%;
+  
+}
+
+
+.Card.img{
+  width: 20%;
+
 }
