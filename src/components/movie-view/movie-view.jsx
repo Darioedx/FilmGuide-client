@@ -22,6 +22,7 @@ export const MovieView = ({similar, movie, onBackClick,onDirector, bio}) => {
       <div>
         <span>Genre: </span>
         <span>{movie.genre}</span>
+        
       </div>
       <div>
         <span>Director: </span>
@@ -35,7 +36,7 @@ export const MovieView = ({similar, movie, onBackClick,onDirector, bio}) => {
         <span>Actors: </span>
         <span >{movie.actors}</span>
       </div>
-      <button onClick={onBackClick}>Back</button>
+      <Button variant="outline-warning" className="m-3" onClick={onBackClick}>Back</Button>
      
     </div>
     

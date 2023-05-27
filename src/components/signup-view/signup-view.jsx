@@ -32,8 +32,9 @@ export const SignupView = () => {
     });
   };
   return (
-    <Form onSubmit={handleSubmit}>
-      
+  
+    <Form className="m-3" onSubmit={handleSubmit}>
+       
       <Form.Group controlId="formUsername">
         <Form.Label>Username: </Form.Label>
         <Form.Control type="text" value={username}onChange={(e) => setUsername(e.target.value)} required minLength="3"/>
@@ -53,7 +54,7 @@ export const SignupView = () => {
         <Form.Label>Birthday: </Form.Label>  
         <Form.Control type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} required/>
       </Form.Group>
-      <Button type="submit">Sign up</Button>
+      <Button className="m-3" variant="outline-warning" type="submit">Sign up</Button>
     
     </Form>
   );

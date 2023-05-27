@@ -6,7 +6,8 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import  Row from "react-bootstrap/Row";
 import  Col from "react-bootstrap/Col";
-
+import Button from "react-bootstrap/Button";
+import { Container } from "react-bootstrap";
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
@@ -33,7 +34,7 @@ export const MainView = () => {
             genre:data.Genre.Name,
             director: data.Director.Name,
             plot: data.Plot,
-            actors:data.Actors.map((actor, index) =>  <li key={index}>{actor}</li>),
+            actors:data.Actors.map((actor, index) => <Container><li key={index}>{actor}</li></Container>),
             bio: data.Director.Bio,
             description: data.Genre.Description
             
@@ -55,25 +56,26 @@ export const MainView = () => {
       
      return (
      
-      <Row className="justify-content-md-center"> 
+      <Row  className="justify-content-center h-100" style={{ margin: "0 auto"}}> 
         
         {
          !user? (<Col md={5}> <LoginView onLoggedIn={(user) => setUser(user)} />
-          or
+          <h2 style={{textAlign:"center" }}>or</h2>
           <SignupView />
         </Col>)
         
          : selectedMovie ? (<>  
             
           
-            
+           <Container style={{marginLeft: "100%", }} className="w-25"> <Button  style={{cursor: "pointer"}}variant="outline-warning" onClick={() => { setUser(null); setToken(null);  localStorage.clear();}}>Logout </Button></Container>
              <Col md={8} ><MovieView movie={selectedMovie}  bio={selectedDirector} onBackClick={() =>
               { setSelectedMovie(null);setSelectedDirector(null)}}  
-             onDirector={()=>setSelectedDirector(selectedMovie.bio)}/></Col>
-            <button onClick={() => { setUser(null); setToken(null);  localStorage.clear();}}>Logout </button>
+             onDirector={()=>setSelectedDirector(selectedMovie.bio)}/></Col><hr></hr>
            
-            {similarMovies.map((movie) => (<MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => {setSelectedMovie(newSelectedMovie);
-           setSelectedDirector(null);}}/>))} 
+            <h2>Similar Movies</h2>
+           
+            {similarMovies.map((movie) => (<Col  className="mb-5" xs={12} md={3}  key={movie.id} ><MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => {setSelectedMovie(newSelectedMovie);
+           setSelectedDirector(null);}}/></Col>))} 
            
             
              
@@ -87,8 +89,8 @@ export const MainView = () => {
           </>) 
          
          : ( <> 
-              <button style={{ cursor: "pointer" }}onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
-              {movies.map((movie) => (<Col xs={12} md={3}  className="mb-5" key={movie.id} ><MovieCard movie={movie} 
+              <Col  style={{ position:"absolute",marginLeft: "100%"}} className="w-25" ><Button  style={{ cursor: "pointer"}}variant="outline-warning" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button></Col>
+              {movies.map((movie) => (<Col className="mb-5" sm={12} md={6}lg={4} xl= {4} key={movie.id} ><MovieCard  movie={movie} 
               onMovieClick={(newSelectedMovie) => {setSelectedMovie(newSelectedMovie)}} /></Col>))}
          </>)
         }

@@ -9,7 +9,7 @@ import { MainView } from "./components/main-view/main-view";
 const App = () => {
   
   return (
-    <Container style={{border: "3px solid #8b7e07"}}>
+    <Container fluid  style={{border: "3px solid #8b7e07",  width:"75%", marginTop: "2%", paddingBottom:"2%", marginBottom:"2%"}}>
       <MainView />
     </Container>
   );
