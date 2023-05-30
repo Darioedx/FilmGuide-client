@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Card, Col, Form, Button } from "react-bootstrap";
+import { Card, Col, Form, Button ,Link} from "react-bootstrap";
 
 
 
-export const ProfileView = ({ token ,  user}) => {
+export const ProfileView = ({ token , updateUser, user}) => {
 
     const [Username, setUsername] = useState("");
     const [Password, setPassword] = useState("");
@@ -39,6 +39,8 @@ export const ProfileView = ({ token ,  user}) => {
       if (user) {
           alert("Successfully changed userdata");
           updateUser(user);
+          console.log(Password)
+          window.location.reload();
       }
   })
   .catch(e => {
@@ -53,7 +55,7 @@ export const ProfileView = ({ token ,  user}) => {
           value={Username}
           onChange={e => setUsername(e.target.value)}
           required
-          minLength="5"
+          minLength="3"
           className="bg-light"
       />
   </Form.Group>
@@ -64,7 +66,7 @@ export const ProfileView = ({ token ,  user}) => {
           value={Password}
           onChange={e => setPassword(e.target.value)}
           required
-          minLength="8"
+          minLength="3"
           className="bg-light"
       />
   </Form.Group>
@@ -88,7 +90,9 @@ export const ProfileView = ({ token ,  user}) => {
           className="bg-light"
       />
   </Form.Group>
+ 
   <Button className="mt-3" variant="primary" type="submit">Submit</Button>
+  
 </Form>
  )
    

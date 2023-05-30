@@ -12,13 +12,19 @@ import  Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
 
+
+
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser? storedUser : null);
   const [token, setToken] = useState(storedToken? storedToken : null);
   const [movies, setMovies] = useState([]);
-  
+ 
+
+  const updateUser = user => {setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+  } 
  
   useEffect(() => {
     fetch("https://movies-guide.herokuapp.com/movies", {
@@ -55,6 +61,8 @@ export const MainView = () => {
         user={user}
         onLoggedOut={() => {
           setUser(null);
+          setToken(null);
+          localStorage.clear();
         }}
       />
         <Row className="justify-content-md-center">
@@ -137,12 +145,8 @@ export const MainView = () => {
                           <Navigate to="/login" replace />
                       ) 
                       : (
-                          <ProfileView user={user} token={token} movies={movies} onLoggedOut={() => {
-                                        setUser(null);
-                                        setToken(null);
-                                        localStorage.clear();
-                                    }} />
-                                )
+                          <ProfileView user={user} token={token} movies={movies} updateUser={updateUser}/>
+                        )
                             }
                         />   
           </Routes>

@@ -57,7 +57,9 @@ export const SignupView = () => {
         <Form.Label>Birthday: </Form.Label>  
         <Form.Control type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} required/>
       </Form.Group>
+      <Link to={`/`}>
       <Button className="m-3" variant="outline-warning" type="submit">Sign up</Button>
+      </Link>
      
     
     </Form>
