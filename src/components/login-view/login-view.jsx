@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Button, Form} from "react-bootstrap";
+import { Navbar, Container, Nav , Link} from "react-bootstrap";
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -38,8 +39,8 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
 
-  return (
-     
+  return (<>
+    
     <Form className="m-3" onSubmit={handleSubmit}>
      <br></br>  <br></br>
      <Form.Label className="m-3" ><h1>Welcome to my blalalalala</h1></Form.Label> 
@@ -54,10 +55,12 @@ export const LoginView = ({ onLoggedIn }) => {
         <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
       </Form.Group>
       
-      <Button className="m-3" variant="outline-warning"  type="submit">Login</Button>
-   
+      <Button className="m-3" variant="outline-warning"  style={{}}type="submit">Login</Button>
+      <Nav.Link as={Link} to="/signup">
+                  Signup
+                </Nav.Link>
     </Form>
-  );
+    </>);
 };
 
 

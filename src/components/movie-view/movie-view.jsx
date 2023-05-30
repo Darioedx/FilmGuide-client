@@ -1,60 +1,51 @@
 import PropTypes from "prop-types";
-import { arrayOf } from "prop-types";
+
 import { Button, Card } from "react-bootstrap";
-let genreToFilter;
-let similarMovies;
-export const MovieView = ({similar, movie, onBackClick,onDirector, bio}) => {
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+
+export const MovieView = ({ movies}) => {
+  const { movieId } = useParams();
+
+  const movie = movies.find((movie) => movie.id === movieId);
+  
+  
    
-            
   return (
+   <div>
     <div>
-      <div>
-        <img src={movie.image} />
-      </div>
-      <div>
-        <span >Title: </span>
-        <span>{movie.title}</span>
-      </div>
-      <div>
-        <span>Plot: </span>
-        <span>{movie.plot}</span>
-      </div>
-      <div>
-        <span>Genre: </span>
-        <span>{movie.genre}</span>
-        
-      </div>
-      <div>
-        <span>Director: </span>
-        <span onClick={onDirector}>{movie.director}</span>
-      </div>
-      <div>
-        <span>{bio}</span>     
-      </div>
+      <img src={movie.image} />
+    </div>
+    <div>
+      <span >Title: </span>
+      <span>{movie.title}</span>
+    </div>
+    <div>
+      <span>Plot: </span>
+      <span>{movie.plot}</span>
+    </div>
+    <div>
+      <span>Genre: </span>
+      <span>{movie.genre}</span>
+      
+    </div>
+    <div>
+      <span>Director: </span>
+      <span >{movie.director}</span>
+    </div>
+    <div>
+      <span>Actors: </span>
+      <span >{movie.actors}</span>
+    </div>
      
-      <div>
-        <span>Actors: </span>
-        <span >{movie.actors}</span>
-      </div>
-      <Button variant="outline-warning" className="m-3" onClick={onBackClick}>Back</Button>
-     
+      <Link to={`/`}>
+        <Button style={{cursor: "pointer"}} className="m-3" variant="outline-warning">Back</Button>
+      </Link>
+      <Link as={Link} to="/users" style={{ }} >al perfil</Link>
+      
     </div>
     
   );
 };
-
-
-MovieView.propTypes = {
-  movie: PropTypes.shape({
-  title: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  director: PropTypes.string.isRequired,
-  genre:PropTypes.array,
-  bio: PropTypes.string,
-  actors:PropTypes.array
-  
-
-}).isRequired,
-onBackClick: PropTypes.func.isRequired,
-onDirector:  PropTypes.func.isRequired,
-};
+            
+ 

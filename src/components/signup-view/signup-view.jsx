@@ -1,5 +1,8 @@
 import{ useState } from "react";
 import { Button, Form} from "react-bootstrap";
+import { Nav, NavLink } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 export const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -31,8 +34,8 @@ export const SignupView = () => {
       }
     });
   };
-  return (
-  
+  return (<>
+    
     <Form className="m-3" onSubmit={handleSubmit}>
        
       <Form.Group controlId="formUsername">
@@ -55,7 +58,8 @@ export const SignupView = () => {
         <Form.Control type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} required/>
       </Form.Group>
       <Button className="m-3" variant="outline-warning" type="submit">Sign up</Button>
+     
     
     </Form>
-  );
+    </> );
 };
