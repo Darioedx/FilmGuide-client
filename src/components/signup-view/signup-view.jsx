@@ -60,7 +60,9 @@ export const SignupView = () => {
       <Link to={`/`}>
       <Button className="m-3" variant="outline-warning" type="submit">Sign up</Button>
       </Link>
-     
+      <Nav.Link as={Link}   to="/login" style={{}}>
+                    Login
+                </Nav.Link>
     
     </Form>
     </> );
