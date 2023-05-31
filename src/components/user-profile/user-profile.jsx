@@ -9,7 +9,8 @@ export const ProfileView = ({ token , updateUser, user}) => {
     const [Password, setPassword] = useState("");
     const [Email, setEmail] = useState("");
     const [Birthdate, setBirthdate] = useState("");
-    console.log("hola"+user.Username)
+   
+    
     const handleSubmit = event => {
       event.preventDefault(); 
      const data = {
@@ -29,6 +30,7 @@ export const ProfileView = ({ token , updateUser, user}) => {
       body:JSON.stringify(data),
     }) .then(response => {
       if (response.ok) {
+        
           return response.json();
       } else {
           alert("Changing userdata failed");
@@ -46,11 +48,14 @@ export const ProfileView = ({ token , updateUser, user}) => {
   .catch(e => {
       alert(e);
   })};
- return(
+ return(<>
+ 
+ 
  <Form onSubmit={handleSubmit}>
   <Form.Group>
       <Form.Label>Username:</Form.Label>
       <Form.Control
+          placeholder={user.Username}
           type="text"
           value={Username}
           onChange={e => setUsername(e.target.value)}
@@ -61,7 +66,8 @@ export const ProfileView = ({ token , updateUser, user}) => {
   </Form.Group>
   <Form.Group>
       <Form.Label>Password:</Form.Label>
-      <Form.Control
+      <Form.Control style={{color: "red"}}
+          placeholder="xxxxxxxxxxxxxxxx"
           type="password"
           value={Password}
           onChange={e => setPassword(e.target.value)}
@@ -73,27 +79,29 @@ export const ProfileView = ({ token , updateUser, user}) => {
   <Form.Group>
       <Form.Label>Email:</Form.Label>
       <Form.Control
+          placeholder={user.Email}
           type="email"
           value={Email}
           onChange={e => setEmail(e.target.value)}
           required
-          className="bg-light"
+          
       />
   </Form.Group>
   <Form.Group>
       <Form.Label>Birthdate:</Form.Label>
       <Form.Control
+                
           type="date"
           value={Birthdate}
           onChange={e => setBirthdate(e.target.value)}
           required
-          className="bg-light"
+        
       />
   </Form.Group>
  
-  <Button className="mt-3" variant="primary" type="submit">Submit</Button>
+  <Button className="mt-3" variant="primary" type="submit">Update info</Button>
   
 </Form>
- )
+</>)
    
   }

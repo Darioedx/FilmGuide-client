@@ -5,27 +5,17 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
   return (
     <Navbar bg="none" expand="lg">
       <Container>
-         
-       
-            {!user && (
-              <>
-                <Nav.Link as={Link}   to="/login" style={{}}>
-                    Login
-                </Nav.Link>
-                <Nav.Link as={Link} to="/signup">
-                  Signup
-                </Nav.Link>
-              </>
-            )}
                
-            {user && (
+         {user && (<>
               <>
-                <Nav.Link style={{}}as={Link} to="/">
-                         Home 
-                 </Nav.Link>
+                  
+                  <Link as={Link} to="/users" style={{ }} >al perfil</Link>
+                 </>
+              <>
+                <Nav.Link style={{}}as={Link} to="/"> Home </Nav.Link>
                 <Nav.Link as={Link} to="/signup" style={{ }} onClick={onLoggedOut}>Logout</Nav.Link>
               </>
-            )}
+              </> )}
          
        
       </Container>

@@ -109,7 +109,7 @@ export const MainView = () => {
                   ) 
                   : (
                     <Col md={8}>
-                      <MovieView movies={movies} />
+                      <MovieView movies={movies} user={user} token={token}/>
                       
            
                     </Col>

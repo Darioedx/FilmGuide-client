@@ -1,13 +1,23 @@
 import PropTypes from "prop-types";
 
-import { Button, Card } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
-export const MovieView = ({ movies}) => {
+export const MovieView = ({user ,token ,movies}) => {
   const { movieId } = useParams();
-
+  console.log(movieId)
+  console.log(token)
   const movie = movies.find((movie) => movie.id === movieId);
+
+    const addFavorite = () => {
+        fetch(`https://movies-guide.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
+            method: "PUT",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json"
+            },
+        })}
   
   
    
@@ -36,13 +46,20 @@ export const MovieView = ({ movies}) => {
     <div>
       <span>Actors: </span>
       <span >{movie.actors}</span>
-    </div>
+    </div><>
      
       <Link to={`/`}>
         <Button style={{cursor: "pointer"}} className="m-3" variant="outline-warning">Back</Button>
       </Link>
-      <Link as={Link} to="/users" style={{ }} >al perfil</Link>
+
+    
       
+      
+      <Button onClick={addFavorite} style={{cursor: "pointer"}} className="m-3" variant="outline-warning">Add to favorites</Button>
+  
+   
+      
+      </>
     </div>
     
   );
