@@ -1,13 +1,17 @@
 import PropTypes from "prop-types";
 
-import { Button, Form } from "react-bootstrap";
+import { Button, Form , Col, Card} from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-
+import { MovieCard } from "../movie-card/movie-card";
 export const MovieView = ({user ,token ,movies}) => {
   const { movieId } = useParams();
-  console.log(movieId)
-  console.log(token)
+ 
+  token = localStorage.getItem("token")
+ 
+
+  console.log(user.FavoritesMovies)
+  
   const movie = movies.find((movie) => movie.id === movieId);
 
     const addFavorite = () => {
@@ -17,7 +21,24 @@ export const MovieView = ({user ,token ,movies}) => {
               Authorization: `Bearer ${token}`,
               "Content-Type": "application/json"
             },
-        })}
+        }) .then(response => {
+          if (response.ok) {
+            console.log("Login response: ", response);
+              return response.json();
+          } else {
+              alert("Failed to add");
+              return false;
+          }
+      })
+      .then(user => {
+          if (user) {
+              alert("Successfully added movie");
+              
+          }
+      })
+      .catch(e => {
+          alert(e);
+      })}
   
   
    
@@ -46,7 +67,9 @@ export const MovieView = ({user ,token ,movies}) => {
     <div>
       <span>Actors: </span>
       <span >{movie.actors}</span>
-    </div><>
+    </div>
+    
+    <>
      
       <Link to={`/`}>
         <Button style={{cursor: "pointer"}} className="m-3" variant="outline-warning">Back</Button>
@@ -57,8 +80,8 @@ export const MovieView = ({user ,token ,movies}) => {
       
       <Button onClick={addFavorite} style={{cursor: "pointer"}} className="m-3" variant="outline-warning">Add to favorites</Button>
   
-   
-      
+      <Button style={{cursor: "pointer"}} className="m-3" variant="outline-warning">show favorites</Button>
+     
       </>
     </div>
     
