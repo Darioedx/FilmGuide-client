@@ -1,12 +1,13 @@
 import React from "react";
 import { useState, useEffect} from "react";
 import { MovieCard } from "../movie-card/movie-card";
-import { MovieView ,favMov} from "../movie-view/movie-view";
+import{FavmovCard}from "../movie-card/favmov-card";
+import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
-import{ProfileView, favMov} from "../user-profile/user-profile";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import{ProfileView} from "../user-profile/user-profile";
+import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import  Row from "react-bootstrap/Row";
 import  Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -63,6 +64,7 @@ export const MainView = () => {
          console.log(favMov)         
      })
      )
+    
     
      return (
       <BrowserRouter>
@@ -121,7 +123,7 @@ export const MainView = () => {
                   ) 
                   : (
                     <Col md={8}>
-                      <MovieView movies={movies} user={user} token={token} onFavorite={() => { setFavorites(favMov )}}/>
+                      <MovieView movies={movies} user={user} token={token} onFavorite={() => { setFavorites(favMov )}} newFav={()=> setFavorites(null)}/>
                       
            
                     </Col>
@@ -140,8 +142,8 @@ export const MainView = () => {
                     
                     : favorites ? (<>
                       {favMov.map((movie)=>(<Col className="mb-4" key={movie.id}xs={6} md={3}>
-                      <MovieCard movie={movie} />
-                       </Col>))}
+                      < FavmovCard  movie={movie} user={user}/>
+                     </Col>))}
 
                       </>)
                    

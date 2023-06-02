@@ -1,6 +1,11 @@
 import PropTypes from "prop-types";
 import { Button, Card} from "react-bootstrap";
 import { Link } from "react-router-dom";
+
+
+
+
+
 export const MovieCard = ({ movie}) => {
   return (
     <Card className="h-100 mt-5 "  style={{ border: "5px solid #8b7e07",  }}>
