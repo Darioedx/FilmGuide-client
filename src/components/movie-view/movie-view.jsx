@@ -1,16 +1,20 @@
 import PropTypes from "prop-types";
-
+import { useState, useEffect} from "react";
 import { Button, Form , Col, Card} from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
-export const MovieView = ({user ,token ,movies}) => {
+
+
+export const MovieView = ({user ,token ,movies, onFavorite}) => {
   const { movieId } = useParams();
  
   token = localStorage.getItem("token")
- 
-
-  console.log(user.FavoritesMovies)
+  
+  
+  
+  
+  
   
   const movie = movies.find((movie) => movie.id === movieId);
 
@@ -43,7 +47,15 @@ export const MovieView = ({user ,token ,movies}) => {
   
    
   return (
+    
    <div>
+    <div>
+    
+      
+       
+
+
+    </div>
     <div>
       <img src={movie.image} />
     </div>
@@ -68,20 +80,30 @@ export const MovieView = ({user ,token ,movies}) => {
       <span>Actors: </span>
       <span >{movie.actors}</span>
     </div>
-    
+    <div>
+      <span>favoritas </span>
+      <span ></span>
+    </div>
+    <div>
+     
+  
+   </div>
     <>
      
       <Link to={`/`}>
         <Button style={{cursor: "pointer"}} className="m-3" variant="outline-warning">Back</Button>
       </Link>
 
-    
       
-      
+      <Link to={`/`}>
       <Button onClick={addFavorite} style={{cursor: "pointer"}} className="m-3" variant="outline-warning">Add to favorites</Button>
-  
-      <Button style={{cursor: "pointer"}} className="m-3" variant="outline-warning">show favorites</Button>
+      </Link>
      
+      <Link to={`/`}>
+      <Button  onClick={onFavorite} style={{cursor: "pointer"}} className="m-3" variant="outline-warning">show favorites</Button>
+      </Link>
+      
+      
       </>
     </div>
     

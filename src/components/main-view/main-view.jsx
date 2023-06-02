@@ -1,11 +1,11 @@
 import React from "react";
 import { useState, useEffect} from "react";
 import { MovieCard } from "../movie-card/movie-card";
-import { MovieView } from "../movie-view/movie-view";
+import { MovieView ,favMov} from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
-import{ProfileView} from "../user-profile/user-profile";
+import{ProfileView, favMov} from "../user-profile/user-profile";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import  Row from "react-bootstrap/Row";
 import  Col from "react-bootstrap/Col";
@@ -13,6 +13,8 @@ import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
 
 
+  
+  
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -20,6 +22,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser? storedUser : null);
   const [token, setToken] = useState(storedToken? storedToken : null);
   const [movies, setMovies] = useState([]);
+  const [favorites, setFavorites] = useState(null);
  
 
   const updateUser = user => {setUser(user);
@@ -52,10 +55,16 @@ export const MainView = () => {
         setMovies(moviesFromApi);
       });
      }, [token]);
-     
-      
+   //add movies to favorites  
+     let favMov=[]
+     if (user)(
+        user.FavoritesMovies.map((m_id, index) => {
+         favMov.push(movies.find((movie)=> movie.id == m_id))
+         console.log(favMov)         
+     })
+     )
     
-    return (
+     return (
       <BrowserRouter>
         <NavigationBar
         user={user}
@@ -64,6 +73,7 @@ export const MainView = () => {
           setToken(null);
           localStorage.clear();
         }}
+        movies = {movies} emptyFav={() => { setFavorites(null)}}  onFavorite={() => { setFavorites(favMov )}}
       />
         <Row className="justify-content-md-center">
           <Routes>
@@ -88,10 +98,12 @@ export const MainView = () => {
                 <>
                   {user ? (
                     <Navigate to="/" />
-                  ) : (
+                  ) 
+                  : (
                     <Col md={5}>
                       <LoginView onLoggedIn={(user) => setUser(user)} />
                     </Col>
+                    
                   )}
                 </>
   
@@ -109,7 +121,7 @@ export const MainView = () => {
                   ) 
                   : (
                     <Col md={8}>
-                      <MovieView movies={movies} user={user} token={token}/>
+                      <MovieView movies={movies} user={user} token={token} onFavorite={() => { setFavorites(favMov )}}/>
                       
            
                     </Col>
@@ -121,15 +133,19 @@ export const MainView = () => {
               path="/"
               element={
                 <>
-                  {!user ? (<>
-                    <Navigate to="/" replace />
-                    <Col md={5}>
-                      <SignupView />
-                    </Col>
-                  </>
-                  ) : movies.length === 0 ? (
-                    <Col>The list is empty!</Col>
-                  ) : (
+                  {!user ? (<> <Navigate to="/" replace /> <Col md={5}> <SignupView /></Col> </>)
+                   
+                   : movies.length === 0 ? (
+                    <Col>The list is empty!</Col> )
+                    
+                    : favorites ? (<>
+                      {favMov.map((movie)=>(<Col className="mb-4" key={movie.id}xs={6} md={3}>
+                      <MovieCard movie={movie} />
+                       </Col>))}
+
+                      </>)
+                   
+                      : (
                     <>
                      
                       {movies.map((movie) => (
@@ -148,9 +164,12 @@ export const MainView = () => {
                       !user ? (
                           <Navigate to="/singup" replace />
                       ) 
-                      : (
-                          <ProfileView user={user} token={token} movies={movies} updateUser={updateUser}/>
-                        )
+                      
+                     
+                     : (<>
+                          <ProfileView user={user} token={token} movies={movies}  updateUser={updateUser}/>
+                         
+                         </>)
                             }
                         />   
           </Routes>

@@ -10,7 +10,7 @@ export const ProfileView = ({ token , updateUser, user}) => {
     const [Email, setEmail] = useState("");
     const [Birthdate, setBirthdate] = useState("");
    
-   console.log(user.FavoritesMovies[0]) 
+    
     const handleSubmit = event => {
       event.preventDefault(); 
      const data = {
