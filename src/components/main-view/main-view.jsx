@@ -10,7 +10,7 @@ import{ProfileView} from "../user-profile/user-profile";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import  Row from "react-bootstrap/Row";
 import  Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+
 import { Container } from "react-bootstrap";
 
 
@@ -20,16 +20,27 @@ import { Container } from "react-bootstrap";
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
+  
   const [user, setUser] = useState(storedUser? storedUser : null);
   const [token, setToken] = useState(storedToken? storedToken : null);
   const [movies, setMovies] = useState([]);
-  const [favorites, setFavorites] = useState(null);
  
+ //primero muestro los favoritos que tengo 
+  const [favorites, setFavorites] = useState("");
+  const onFavorites=(()=>{setFavorites(user.FavoritesMovies);
+    
+  
+  }) 
+  
+ /// 
+
 
   const updateUser = user => {setUser(user);
-    localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem("user", JSON.stringify(user));
   } 
- 
+  
+  
+  
   useEffect(() => {
     fetch("https://movies-guide.herokuapp.com/movies", {
       headers: { Authorization: `Bearer ${token}` }
@@ -54,29 +65,24 @@ export const MainView = () => {
         });
 
         setMovies(moviesFromApi);
+        
       });
      }, [token]);
-   //add movies to favorites  
-     let favMov=[]
-     if (user)(
-        user.FavoritesMovies.map((m_id, index) => {
-         favMov.push(movies.find((movie)=> movie.id == m_id))
-         console.log(favMov)         
-     })
-     )
+   
     
     
      return (
       <BrowserRouter>
         <NavigationBar
+        onFavorite={onFavorites}
+        backHome = {(()=>{setFavorites("")})} 
         user={user}
         onLoggedOut={() => {
           setUser(null);
           setToken(null);
           localStorage.clear();
         }}
-        movies = {movies} emptyFav={() => { setFavorites(null)}}  onFavorite={() => { setFavorites(favMov )}}
-      />
+        movies = {movies}/>
         <Row className="justify-content-md-center">
           <Routes>
             <Route
@@ -123,7 +129,7 @@ export const MainView = () => {
                   ) 
                   : (
                     <Col md={8}>
-                      <MovieView movies={movies} user={user} token={token} onFavorite={() => { setFavorites(favMov )}} newFav={()=> setFavorites(null)}/>
+                      <MovieView movies={movies} user={user} onFavorites={onFavorites} updateUser={updateUser}/>
                       
            
                     </Col>
@@ -140,12 +146,16 @@ export const MainView = () => {
                    : movies.length === 0 ? (
                     <Col>The list is empty!</Col> )
                     
-                    : favorites ? (<>
-                      {favMov.map((movie)=>(<Col className="mb-4" key={movie.id}xs={6} md={3}>
-                      < FavmovCard  movie={movie} user={user}/>
-                     </Col>))}
-
-                      </>)
+                    : favorites?(
+                      <>
+                     
+                      
+                        <Col className="mb-4" key={movies.id} xs={6} md={3}>
+                          <FavmovCard movie={movies} favorites={favorites} />
+                        </Col>
+                     
+                    </>
+                    )
                    
                       : (
                     <>

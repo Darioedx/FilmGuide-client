@@ -1,6 +1,6 @@
 import{ useState } from "react";
 import { Button, Form} from "react-bootstrap";
-import { Nav, NavLink } from "react-bootstrap";
+import { Nav,Link } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const SignupView = () => {
@@ -57,9 +57,9 @@ export const SignupView = () => {
         <Form.Label>Birthday: </Form.Label>  
         <Form.Control type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} required/>
       </Form.Group>
-      <Link to={`/`}>
+      <Nav.Link to={`/`}>
       <Button className="m-3" variant="outline-warning" type="submit">Sign up</Button>
-      </Link>
+      </Nav.Link>
       <Nav.Link as={Link}   to="/login" style={{}}>
                     Login
                 </Nav.Link>

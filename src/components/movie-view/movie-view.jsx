@@ -1,12 +1,11 @@
-import PropTypes from "prop-types";
-import { useState, useEffect} from "react";
+
 import { Button, Form , Col, Card} from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { MovieCard } from "../movie-card/movie-card";
 
 
-export const MovieView = ({user ,movies, onFavorite}) => {
+
+export const MovieView = ({user ,movies,onFavorites, updateUser}) => {
   const { movieId } = useParams();
  
   token = localStorage.getItem("token")
@@ -15,6 +14,7 @@ export const MovieView = ({user ,movies, onFavorite}) => {
   const movie = movies.find((movie) => movie.id === movieId);
 
     const addFavorite = () => {
+    
         fetch(`https://movies-guide.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
             method: "PUT",
             headers: {
@@ -32,9 +32,11 @@ export const MovieView = ({user ,movies, onFavorite}) => {
       })
       .then(user => {
           if (user) {
+            updateUser(user)
+          
               alert("Successfully added movie");
-           
-              window.location.reload();
+            
+              
               
           }
       })
@@ -42,33 +44,7 @@ export const MovieView = ({user ,movies, onFavorite}) => {
           alert(e);
       })}
   
-  const delFavorite = () => {
-      let token = localStorage.getItem("token")
-         console.log(token)
-        fetch(`https://movies-guide.herokuapp.com/users/${user.Username}/movies/${movie.id}`, {
-                method: "DELETE",
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                  "Content-Type": "application/json"
-                },
-            }) .then(response => {
-              if (response.ok) {
-                console.log("Login response: ", response);
-                  return response.json();
-              } else {
-                  alert("Failed to delete");
-                  return false;
-              }
-          })
-          .then(user => {
-              if (user) {
-                  alert("Successfully added movie");
-                  
-              }
-          })
-          .catch(e => {
-              alert(e);
-          })}
+  
       
    
       
@@ -122,13 +98,8 @@ export const MovieView = ({user ,movies, onFavorite}) => {
       <Button onClick={addFavorite} style={{cursor: "pointer"}} className="m-3" variant="outline-warning">Add to favorites</Button>
       </Link>
      
-      <Link to={`/`}>
-      <Button  onClick={onFavorite} style={{cursor: "pointer"}} className="m-3" variant="outline-warning">show favorites</Button>
-      </Link>
-     
-      <Link to={`/`}>
-          <Button onClick={delFavorite} variant="link">del</Button>
-        </Link>
+      
+      
       </>
     </div>
     

@@ -41,13 +41,16 @@ export const ProfileView = ({ token , updateUser, user}) => {
       if (user) {
           alert("Successfully changed userdata");
           updateUser(user);
-          console.log(Password)
+          
           window.location.reload();
       }
   })
   .catch(e => {
       alert(e);
   })};
+
+  
+
  return(<>
  
  

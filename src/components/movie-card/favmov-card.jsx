@@ -1,41 +1,24 @@
 import PropTypes from "prop-types";
-import { Button, Card} from "react-bootstrap";
+import { Button, Card, Col, Row} from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router";
 
-export const FavmovCard = ({ user ,movie}) => {
-  
-  
-  const delFavorite = () => {
-     
+
+export const FavmovCard = ({  movie, favorites, onFavorites, updateUser}) => {
  
-    let token = localStorage.getItem("token")
-     
-    fetch(`https://movies-guide.herokuapp.com/users/${user.Username}/movies/${movie.id}`, {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json"
-            },
-        }) .then(response => {
-          if (response.ok) {
-            console.log("Login response: ", response);
-              return response.json();
-          } else {
-              alert("Failed to delete");
-              return false;
-          }
-      })
-      .then(user => {
-          if (user) {
-              alert("Successfully added movie");
-              window.location.reload();
-          }
-      })
-      .catch(e => {
-          alert(e);
-      })}
-  return (
+  const filteredMovies = movie.filter(movie => favorites.includes(movie.id));
+
+
+let token = localStorage.getItem("token")
+let user =localStorage.getItem("user") 
+console.log(user)
+
+  
+
+
+
+  return (<div>
+   
+   {filteredMovies.map(movie => (<Col>
     <Card className="h-100 mt-5 "  style={{ border: "5px solid #8b7e07",  }}>
       <Card.Img   variant="top" src={movie.image} />
       <Card.Body style={{backgroundColor: 'rgb(38, 0, 54)'}}>
@@ -46,11 +29,13 @@ export const FavmovCard = ({ user ,movie}) => {
           <Button variant="link">Open</Button>
         </Link>
         <Link to={`/`}>
-          <Button onClick={delFavorite} variant="link">del</Button>
+          <Button variant="link">del</Button>
         </Link>
       </Card.Body>
     </Card>
-  );
+   
+   
+   </Col>))}</div>);
 };
 
 
