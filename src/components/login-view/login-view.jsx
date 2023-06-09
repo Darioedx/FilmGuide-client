@@ -32,6 +32,7 @@ export const LoginView = ({ onLoggedIn }) => {
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", data.token);
         onLoggedIn(data.user, data.token);
+        window.location.reload();
       } else {
         alert("No such user");
       }
@@ -59,7 +60,7 @@ export const LoginView = ({ onLoggedIn }) => {
       </Form.Group>
       
       <Button className="m-3" variant="outline-warning" type="submit">Login</Button>
-      <Nav.Link as={Link}   to="/signup" > signup  </Nav.Link>
+      <Link as={Link}   to="/signup" > signup  </Link>
     </Form>
     </>);
 };

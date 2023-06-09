@@ -93,7 +93,7 @@ export const MainView = () => {
                     <Navigate to="/" />
                   ) : (
                     <Col md={5}>
-                      <SignupView />
+                      <SignupView onLoggedIn={(user) => setUser(user)} />
                     </Col>
                   )}
                 </>
@@ -150,8 +150,8 @@ export const MainView = () => {
                       <>
                      
                       
-                        <Col className="mb-4" key={movies.id} xs={6} md={3}>
-                          <FavmovCard movie={movies} favorites={favorites} />
+                        <Col className="mb-4"  xs={6} md={3}>
+                          <FavmovCard movie={movies} user={user} favorites={favorites} updateUser={updateUser} onFavorites={onFavorites}/>
                         </Col>
                      
                     </>

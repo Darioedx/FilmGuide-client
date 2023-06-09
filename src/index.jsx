@@ -1,6 +1,8 @@
 import { createRoot } from 'react-dom/client';
-import react,{ StrictMode } from 'react-bootstrap'
-import Container from 'react-bootstrap/Container'
+
+import { StrictMode } from 'react';
+import { Container } from 'react-bootstrap';
+
 // Import statement to indicate that you need to bundle `./index.scss`
 import "./index.scss";
 //

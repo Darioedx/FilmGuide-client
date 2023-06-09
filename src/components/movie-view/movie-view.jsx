@@ -23,7 +23,7 @@ export const MovieView = ({user ,movies,onFavorites, updateUser}) => {
             },
         }) .then(response => {
           if (response.ok) {
-            console.log("Login response: ", response);
+            
               return response.json();
           } else {
               alert("Failed to add");
@@ -52,7 +52,7 @@ export const MovieView = ({user ,movies,onFavorites, updateUser}) => {
    
   return (
     
-   <div>
+   <div key={movie.id}>
     <div>
     </div>
     <div>

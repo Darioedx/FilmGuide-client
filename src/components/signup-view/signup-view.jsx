@@ -1,14 +1,12 @@
 import{ useState } from "react";
 import { Button, Form} from "react-bootstrap";
-import { Nav,Link } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 export const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
-
+//missing get response data in order to re-direct to home page
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -29,13 +27,14 @@ export const SignupView = () => {
       if (response.ok) {
         alert("Signup successful");
         window.location.reload();
-      } else {
+      } 
+      else {
         alert("Signup failed");
       }
-    });
-  };
-  return (<>
-    
+    });//catch error?
+  };// agaregar logica para que redirija home
+  return (
+  
     <Form className="m-3" onSubmit={handleSubmit}>
        
       <Form.Group controlId="formUsername">
@@ -57,13 +56,12 @@ export const SignupView = () => {
         <Form.Label>Birthday: </Form.Label>  
         <Form.Control type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} required/>
       </Form.Group>
-      <Nav.Link to={`/`}>
+      
       <Button className="m-3" variant="outline-warning" type="submit">Sign up</Button>
-      </Nav.Link>
-      <Nav.Link as={Link}   to="/login" style={{}}>
+     
+      <Link as={Link}   to="/login" style={{}}>
                     Login
-                </Nav.Link>
-    
+                </Link>
     </Form>
-    </> );
+  );
 };
