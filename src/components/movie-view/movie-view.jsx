@@ -3,9 +3,12 @@ import { Button, Form , Col, Card} from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
+//generate ramdom number for  key
+const getRndInteger = (min, max) => {
+  return Math.floor(Math.random() * (max - min)) + min;
+};
 
-
-export const MovieView = ({user ,movies,onFavorites, updateUser}) => {
+export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
   const { movieId } = useParams();
  
   token = localStorage.getItem("token")
@@ -32,10 +35,11 @@ export const MovieView = ({user ,movies,onFavorites, updateUser}) => {
       })
       .then(user => {
           if (user) {
-            updateUser(user)
-          
+         //falta logica para que muestre 'favorites'
+            updateUser(user);
+            onFavorite;
               alert("Successfully added movie");
-            
+              
               
               
           }
@@ -52,11 +56,9 @@ export const MovieView = ({user ,movies,onFavorites, updateUser}) => {
    
   return (
     
-   <div key={movie.id}>
+   <div key={movie.id} style={{marginLeft:"30%"}} >
     <div>
-    </div>
-    <div>
-      <img src={movie.image} />
+      <img src={movie.image} className="mt-3 mb-3" alt="movie poster"/>
     </div>
     <div>
       <span >Title: </span>
@@ -67,9 +69,15 @@ export const MovieView = ({user ,movies,onFavorites, updateUser}) => {
       <span>{movie.plot}</span>
     </div>
     <div>
-      <span>Genre: </span>
-      <span>{movie.genre}</span>
-      
+      <span >Genre: </span>
+      <span key={getRndInteger(135, 600)}>{movie.genre.map((genre, index) => (
+    <>
+      {genre}
+      {index < movie.genre.length - 1 ? ", " : ""}
+      {index === movie.genre.length - 1 ? "." : ""}
+    </>
+  ))}
+  </span>
     </div>
     <div>
       <span>Director: </span>
@@ -77,16 +85,13 @@ export const MovieView = ({user ,movies,onFavorites, updateUser}) => {
     </div>
     <div>
       <span>Actors: </span>
-      <span >{movie.actors}</span>
+      <span key={getRndInteger(135, 600)} >{movie.actors}</span>
     </div>
     <div>
-      <span>favoritas </span>
+      <span>falta añadir 'SIMILARES MOVIES'</span>
       <span ></span>
     </div>
-    <div>
-     
-  
-   </div>
+   
     <>
      
       <Link to={`/`}>

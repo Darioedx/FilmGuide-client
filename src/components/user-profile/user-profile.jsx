@@ -3,13 +3,14 @@ import { Card, Col, Form, Button ,Link} from "react-bootstrap";
 
 
 
-export const ProfileView = ({ token , updateUser, user}) => {
+export const ProfileView = ({ token , onLoggedOut,updateUser, user}) => {
 
     const [Username, setUsername] = useState("");
     const [Password, setPassword] = useState("");
     const [Email, setEmail] = useState("");
     const [Birthdate, setBirthdate] = useState("");
    
+    
     
     const handleSubmit = event => {
       event.preventDefault(); 
@@ -49,7 +50,26 @@ export const ProfileView = ({ token , updateUser, user}) => {
       alert(e);
   })};
 
-  
+  const deleteAccount = () => {
+    console.log("doin")
+    fetch(`https://movies-guide.herokuapp.com/users/${user.Username}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` }
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("Your account has been deleted. Good Bye!");
+            onLoggedOut();
+          
+            window.location.replace("/login");
+        } else {
+            alert("Could not delete account");
+        }
+    })
+    .catch(e => {
+        alert(e);
+    });
+} 
 
  return(<>
  
@@ -103,7 +123,7 @@ export const ProfileView = ({ token , updateUser, user}) => {
   </Form.Group>
  
   <Button className="mt-3" variant="primary" type="submit">Update info</Button>
-  
+  <Button onClick={deleteAccount} className="mt-3" variant="primary" >delete</Button>
 </Form>
 </>)
    

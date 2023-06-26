@@ -14,7 +14,7 @@ import  Col from "react-bootstrap/Col";
 import { Container } from "react-bootstrap";
 
 
-  
+ 
   
 
 export const MainView = () => {
@@ -33,10 +33,10 @@ export const MainView = () => {
   }) 
   
  /// 
-
+ 
 
   const updateUser = user => {setUser(user);
-  localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem("user", JSON.stringify(user));///poque uso stryngfy???? asi se pasa los valores en local storage
   } 
   
   
@@ -56,7 +56,7 @@ export const MainView = () => {
             genre:data.Genre.Name,
             director: data.Director.Name,
             plot: data.Plot,
-            actors:data.Actors.map((actor, index) => <Container><li key={index}>{actor}</li></Container>),
+            actors:data.Actors.map((actor, index) => <Container ><li>{actor}</li></Container>),
             bio: data.Director.Bio,
             description: data.Genre.Description
             
@@ -69,7 +69,12 @@ export const MainView = () => {
       });
      }, [token]);
    
-    
+     onLoggedOut=() => {
+      setUser(null);
+      setToken(null);
+      localStorage.clear();
+      window.location.replace("/singup")
+    }
     
      return (
       <BrowserRouter>
@@ -77,11 +82,7 @@ export const MainView = () => {
         onFavorite={onFavorites}
         backHome = {(()=>{setFavorites("")})} 
         user={user}
-        onLoggedOut={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }}
+        onLoggedOut={onLoggedOut}
         movies = {movies}/>
         <Row className="justify-content-md-center">
           <Routes>
@@ -179,7 +180,7 @@ export const MainView = () => {
                       
                      
                      : (<>
-                          <ProfileView user={user} token={token} movies={movies}  updateUser={updateUser}/>
+                          <ProfileView user={user} token={token} movies={movies} onLoggedOut={onLoggedOut} updateUser={updateUser}/>
                          
                          </>)
                             }

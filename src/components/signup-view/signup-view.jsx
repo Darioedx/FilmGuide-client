@@ -26,13 +26,15 @@ export const SignupView = () => {
     }).then((response) => {
       if (response.ok) {
         alert("Signup successful");
-        window.location.reload();
+        window.location.replace("/login");
       } 
       else {
         alert("Signup failed");
       }
-    });//catch error?
-  };// agaregar logica para que redirija home
+    }).catch(e => {
+      alert(e);
+  });
+  }
   return (
   
     <Form className="m-3" onSubmit={handleSubmit}>
@@ -57,7 +59,7 @@ export const SignupView = () => {
         <Form.Control type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} required/>
       </Form.Group>
       
-      <Button className="m-3" variant="outline-warning" type="submit">Sign up</Button>
+      <Button className="m-3" variant="outline-warning" type="submit" >signup</Button>
      
       <Link as={Link}   to="/login" style={{}}>
                     Login
