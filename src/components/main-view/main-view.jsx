@@ -56,7 +56,7 @@ export const MainView = () => {
             genre:data.Genre.Name,
             director: data.Director.Name,
             plot: data.Plot,
-            actors:data.Actors.map((actor, index) => <Container ><li>{actor}</li></Container>),
+            actors:data.Actors,
             bio: data.Director.Bio,
             description: data.Genre.Description
             

@@ -12,7 +12,7 @@ export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
   const { movieId } = useParams();
  
   token = localStorage.getItem("token")
-   
+  
   
   const movie = movies.find((movie) => movie.id === movieId);
   let movieIsthere 
@@ -33,6 +33,7 @@ export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
         }
     
 /////if movie no allready added, continue...
+
       if(!movieIsthere) {
         
         fetch(`https://movies-guide.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
@@ -69,8 +70,6 @@ export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
   
   
       
-   
-      
       
    
   return (
@@ -89,7 +88,7 @@ export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
     </div>
     <div>
       <span >Genre: </span>
-      <span key={getRndInteger(135, 600)}>{movie.genre.map((genre, index) => (
+      <span key={getRndInteger(130, 600)}>{movie.genre.map((genre, index) => (
     <>
       {genre}
       {index < movie.genre.length - 1 ? ", " : ""}
@@ -104,7 +103,16 @@ export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
     </div>
     <div>
       <span>Actors: </span>
-      <span key={getRndInteger(135, 600)} >{movie.actors}</span>
+      <span key={getRndInteger(135, 600)} >
+          {movie.actors.map((actors, index) => (
+    <>
+          {actors}
+          {index < movie.actors.length - 1 ? ", " : ""}
+          {index === movie.actors.length - 1 ? "." : ""}
+    </>
+  ))}
+      
+      </span>
     </div>
     <div>
       <span>falta añadir 'SIMILARES MOVIES'</span>

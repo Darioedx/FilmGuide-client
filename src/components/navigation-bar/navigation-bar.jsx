@@ -39,3 +39,4 @@ export const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite }) => {
   );
 };
 
+//user&& renderizado condicional; renderizará la nav bar si user === true ya que en mainView no le puse condicional
