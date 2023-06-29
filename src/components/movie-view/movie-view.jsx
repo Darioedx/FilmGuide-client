@@ -15,38 +15,57 @@ export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
    
   
   const movie = movies.find((movie) => movie.id === movieId);
+  let movieIsthere 
+   
+  const addFavorite = () => {
+   //check if movie is allready added to favorites   
+      user.FavoritesMovies.forEach(element => {///cambiar esto a find para que no itinere toda la array
+        
+        if (element === movieId ){
+          
+         movieIsthere = element
 
-    const addFavorite = () => {
+         console.log(movieIsthere)
+            }
+        });
+        if (movieIsthere){
+          alert("Movie is allready there¡¡¡¡¡")
+        }
     
+/////if movie no allready added, continue...
+      if(!movieIsthere) {
+        
         fetch(`https://movies-guide.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
             method: "PUT",
             headers: {
               Authorization: `Bearer ${token}`,
               "Content-Type": "application/json"
             },
-        }) .then(response => {
-          if (response.ok) {
+         }) .then(response => {
+              if (response.ok) {
             
               return response.json();
-          } else {
+             } else {
               alert("Failed to add");
               return false;
           }
-      })
-      .then(user => {
-          if (user) {
-         //falta logica para que muestre 'favorites'
+         })
+            .then(user => {
+              if (user) {
+         
+         
+           
             updateUser(user);
-            onFavorite;
-              alert("Successfully added movie");
+            
+            alert("Successfully added movie");
               
               
               
           }
       })
-      .catch(e => {
-          alert(e);
-      })}
+         .catch(e => {
+            alert(e);
+      })}}
   
   
       
