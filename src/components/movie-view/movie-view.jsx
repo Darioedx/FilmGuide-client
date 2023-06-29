@@ -74,9 +74,9 @@ export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
    
   return (
     
-   <div key={movie.id} style={{marginLeft:"30%"}} >
+   <div key={movie.id} style={{marginLeft:"30%" }} >
     <div>
-      <img src={movie.image} className="mt-3 mb-3" alt="movie poster"/>
+      <img src={movie.image} className="mt-3 mb-3" style={{border: "5px solid #8b7e07"}}alt="movie poster"/>
     </div>
     <div>
       <span >Title: </span>

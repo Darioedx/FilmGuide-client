@@ -26,15 +26,7 @@ export const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite }) => {
       </Container>
     </Navbar>
     
-            <Form className="d-flex mt-5" style={{maxWidth: "50%", margin: "0 auto"}} >
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-             />
-              <Button variant="outline-warning" size="sm">FALTA</Button>
-          </Form></>   
+          </>   
   
   );
 };
