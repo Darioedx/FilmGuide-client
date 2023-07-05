@@ -122,8 +122,8 @@ export const ProfileView = ({ token , onLoggedOut,updateUser, user}) => {
       />
   </Form.Group>
  
-  <Button className="mt-3" variant="primary" type="submit">Update info</Button>
-  <Button onClick={deleteAccount} className="mt-3" variant="primary" >delete</Button>
+  <Button  className="m-3" variant="outline-warning">Update info</Button>
+  <Button onClick={deleteAccount} className="m-3" variant="outline-warning">delete</Button>
 </Form>
 </>)
    

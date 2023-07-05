@@ -3,7 +3,7 @@ import { Button, Card, Col, Row} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
-export const FavmovCard = ({ movie, favorites, user, updateUser, onFavorites }) => {
+export const FavmovCard = ({ movie, favorites, user, updateUser}) => {
   const filteredMovies = movie.filter((movie) => favorites.includes(movie.id));
   const token = localStorage.getItem("token");
 

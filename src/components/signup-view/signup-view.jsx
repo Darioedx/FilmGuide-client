@@ -1,6 +1,8 @@
 import{ useState } from "react";
 import { Button, Form} from "react-bootstrap";
 import { Link } from "react-router-dom";
+
+
 export const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -61,7 +63,7 @@ export const SignupView = () => {
       
       <Button className="m-3" variant="outline-warning" type="submit" >signup</Button>
      
-      <Link as={Link}   to="/login" style={{}}>
+      <Link as={Link}   to="/login" >
                     Login
                 </Link>
     </Form>

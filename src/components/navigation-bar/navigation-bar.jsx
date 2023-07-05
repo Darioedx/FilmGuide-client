@@ -1,4 +1,4 @@
-import { Navbar, Container, Nav,  Button, Form, TabContent } from "react-bootstrap";
+import { Navbar, Container, Nav} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
@@ -10,12 +10,12 @@ export const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite }) => {
          {user && (<>
              <>
                  <Nav.Link style={{}}as={Link} to="/"  onClick={onFavorite}  > My favorites </Nav.Link>
-                  <Link as={Link} to="/users" style={{ }} >al perfil</Link>
+                  <Nav.Link as={Link} to="/users"  >al perfil</Nav.Link>
              </>
           
               <>
-                <Nav.Link style={{}}as={Link} to="/" onClick={backHome}> Home </Nav.Link>
-                <Nav.Link as={Link} to="/signup" style={{ }} onClick={onLoggedOut}>Logout</Nav.Link>
+                <Nav.Link as={Link} to="/" onClick={backHome}> Home </Nav.Link>
+                <Nav.Link as={Link} to="/signup" onClick={onLoggedOut}>Logout</Nav.Link>
               </>
            </> 
               
