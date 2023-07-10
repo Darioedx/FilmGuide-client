@@ -9,6 +9,7 @@ const getRndInteger = (min, max) => {
 };
 
 export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
+   
   const { movieId } = useParams();
  
   token = localStorage.getItem("token")
@@ -16,17 +17,20 @@ export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
   
   const movie = movies.find((movie) => movie.id === movieId);
   let movieIsthere 
-   
+ 
+  const genreToFilter = movie.genre[0];
+  let similarMovies = movies.filter(movie => movie.genre.includes(genreToFilter));
+  similarMovies = similarMovies.filter(function (movies) {//cambiar arrow func?
+    return movies.title !== movie.title;})
+ 
   const addFavorite = () => {
    //check if movie is allready added to favorites   
-      user.FavoritesMovies.forEach(element => {///cambiar esto a find para que no itinere toda la array
+      user.FavoritesMovies.forEach(element => {///cambiar esto a find para que no itinere toda la array 
         
         if (element === movieId ){
           
          movieIsthere = element
-
-         console.log(movieIsthere)
-            }
+        }
         });
         if (movieIsthere){
           alert("Movie is allready there¡¡¡¡¡")
@@ -104,19 +108,36 @@ export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
     <div>
       <span>Actors: </span>
       <span key={getRndInteger(135, 600)} >
-          {movie.actors.map((actors, index) => (
+      {movie.actors.map((actors, index) => (
     <>
           {actors}
           {index < movie.actors.length - 1 ? ", " : ""}
           {index === movie.actors.length - 1 ? "." : ""}
     </>
   ))}
-      
       </span>
     </div>
     <div>
-      <span>falta añadir 'SIMILARES MOVIES'</span>
-      <span ></span>
+     <span>Similar movies: </span>
+    
+     {similarMovies? 
+    
+      <span key={getRndInteger(130, 600)}>{similarMovies.map((movie, index) => (
+       <> 
+        <Link to={`/movies/${encodeURIComponent(movie.id)}`}>"{movie.title}"</Link>
+        {index < movie.title.length - 1 ? ", " : ""}
+        {index === movie.title.length - 1 ? "." : ""}
+       </>
+       ))}
+      </span> :''}    
+   
+     {similarMovies.length === 0 ?<span> Not similar found</span>
+      :''}    
+    </div>
+    <div>
+     
+      <span>Watch this movie at:  </span>
+      <Link to={`https://publicdomainmovie.net/movie/${movie.title.replaceAll(' ','-')}`}>"{movie.title}"</Link>
     </div>
    
     <>

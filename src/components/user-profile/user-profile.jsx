@@ -61,7 +61,7 @@ export const ProfileView = ({ token , onLoggedOut,updateUser, user}) => {
             alert("Your account has been deleted. Good Bye!");
             onLoggedOut();
           
-            window.location.replace("/login");
+            window.location.replace("/login");// cambiar para que dirij A SINGUP
         } else {
             alert("Could not delete account");
         }
