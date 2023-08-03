@@ -14,10 +14,10 @@ const containerStyle= {border: "3px solid #8b7e07",  width:"75%", marginTop: "2%
 const App = () => {
   
   return (
- 
+ <StrictMode>
     <Container fluid  style={containerStyle}>
       <MainView />
-    </Container>
+    </Container></StrictMode>
   );
 };
 

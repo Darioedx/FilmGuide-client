@@ -17,6 +17,7 @@
   "homepage": "https://github.com/Darioedx/FilmGuide-client#readme",
   "dependencies": {
     "bootstrap": "^5.2.3",
+    "nanoid": "^4.0.2",
     "node-modules": "^0.0.1",
     "parcel": "^2.8.3",
     "prop-types": "^15.8.1",

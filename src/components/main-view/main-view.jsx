@@ -3,6 +3,7 @@ import { useState, useEffect} from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import{FavmovCard}from "../movie-card/favmov-card";
 import { MovieView } from "../movie-view/movie-view";
+import {SimilarMov } from "../movie-view/similar-view.jsx";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
@@ -10,7 +11,7 @@ import{ProfileView} from "../user-profile/user-profile";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import  Row from "react-bootstrap/Row";
 import  Col from "react-bootstrap/Col";
-
+import { nanoid } from "nanoid";
 import { Container } from "react-bootstrap";
 
 
@@ -68,7 +69,8 @@ export const MainView = () => {
         
       });
      }, [token]);
-   
+     
+     
      onLoggedOut=() => {
       setUser(null);
       setToken(null);
@@ -129,11 +131,11 @@ export const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) 
                   : (
-                    <Col md={8}>
-                      <MovieView movies={movies} user={user} onFavorites={onFavorites} updateUser={updateUser}/>
-                      
-           
+                    <Col key={nanoid()} md={8} >
+                      <MovieView  key={nanoid()} movies={movies} user={user} onFavorites={onFavorites} updateUser={updateUser}/>
+                      <SimilarMov movies={movies}/>
                     </Col>
+                    
                   )}
                 </>
               }
@@ -148,14 +150,9 @@ export const MainView = () => {
                     <Col>The list is empty!</Col> )
                     
                     : favorites?(
-                      <>
-                     
-                      
-                        
+                      <>   
                           <FavmovCard movie={movies} user={user} favorites={favorites} updateUser={updateUser} onFavorites={onFavorites}/>
-                        
-                     
-                    </>
+                      </>
                     )
                    
                       : (
