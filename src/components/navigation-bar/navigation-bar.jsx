@@ -1,9 +1,12 @@
-import { Navbar, Container, Nav} from "react-bootstrap";
+import{ useState } from "react";
+import { Navbar, Container, Nav,Form ,Dropdown} from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Button, Card} from "react-bootstrap";
+
+export const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange,isChecked, unchecked }) => {
 
 
-export const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite }) => {
-  return (<>
+return (<>
     <Navbar bg="none" expand="lg">
       <Container>
                
@@ -17,7 +20,19 @@ export const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite }) => {
                 <Nav.Link as={Link} to="/" onClick={backHome}> Home </Nav.Link>
                 <Nav.Link as={Link} to="/signup" onClick={onLoggedOut}>Logout</Nav.Link>
               </>
+              <Form>
+              <Form.Check type= "checkbox" aria-label="radio 1" className="box" id="comedy" value="comedy"checked={isChecked} onChange={(e)=>{handleOnChange(e.target.value)
+                ;unchecked('horror')}}/>
+               <Form.Check.Label>'comedy'</Form.Check.Label></Form>
+               <Form>
+               <Form.Check type= "checkbox" aria-label="radio 1" id="horror" className="box" value="horror" checked={isChecked} onChange={(e)=>{handleOnChange(e.target.value)
+                unchecked('comedy')}}/>
+               <Form.Check.Label>'horror'</Form.Check.Label>             
+              </Form>
+              
+       
            </> 
+        
               
               
               )}
@@ -30,5 +45,5 @@ export const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite }) => {
   
   );
 };
-
+//Utilizar un replace?
 //user&& renderizado condicional; renderizará la nav bar si user === true ya que en mainView no le puse condicional

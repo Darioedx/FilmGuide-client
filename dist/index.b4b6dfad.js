@@ -40657,7 +40657,6 @@ const MainView = ()=>{
     const onFavorites = ()=>{
         setFavorites(user.FavoritesMovies);
     };
-    /// 
     const updateUser = (user)=>{
         setUser(user);
         localStorage.setItem("user", JSON.stringify(user)); ///poque uso stryngfy???? asi se pasa los valores en local storage
@@ -40686,6 +40685,24 @@ const MainView = ()=>{
     }, [
         token
     ]);
+    const [genero, setGenero] = (0, _react.useState)("");
+    const [isChecked, setIsChecked] = (0, _react.useState)(true);
+    const [byGenres, setByGenres] = (0, _react.useState)([]);
+    const handleOnChange = (genre)=>{
+        setIsChecked(!isChecked);
+        setGenero(genre);
+        console.log(isChecked);
+        console.log(genre);
+        let movGenre = movies.filter((movie)=>movie.genre.includes(genre));
+        setByGenres(movGenre);
+        if (isChecked == false) setByGenres([]);
+         ////
+    // window.location.replace(`/movies/genres/${genre}`)
+    };
+    const unchecked = (id)=>{
+        document.getElementById(id).checked = false;
+    };
+    //const secondUncheck = (classNamw)=> document.getElementsByClassName('pepe')
     onLoggedOut = ()=>{
         setUser(null);
         setToken(null);
@@ -40698,13 +40715,17 @@ const MainView = ()=>{
                 onFavorite: onFavorites,
                 backHome: ()=>{
                     setFavorites("");
+                    setByGenres([]);
+                    window.location.reload();
                 },
                 user: user,
                 onLoggedOut: onLoggedOut,
-                movies: movies
+                movies: movies,
+                handleOnChange: handleOnChange,
+                unchecked: unchecked
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 83,
+                lineNumber: 101,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -40725,7 +40746,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 91,
+                            lineNumber: 112,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -40742,7 +40763,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 106,
+                            lineNumber: 127,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -40770,7 +40791,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 123,
+                            lineNumber: 144,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -40803,7 +40824,24 @@ const MainView = ()=>{
                                         updateUser: updateUser,
                                         onFavorites: onFavorites
                                     }, void 0, false, void 0, void 0)
-                                }, void 0, false) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                }, void 0, false) : byGenres.length > 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                            children: [
+                                                genero,
+                                                " Films"
+                                            ]
+                                        }, void 0, true, void 0, void 0),
+                                        byGenres.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                                className: "mb-4",
+                                                xs: 6,
+                                                md: 3,
+                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                                    movie: movie
+                                                }, void 0, false, void 0, void 0)
+                                            }, movie.id, false, void 0, void 0))
+                                    ]
+                                }, void 0, true) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                     children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                             className: "mb-4",
                                             xs: 6,
@@ -40816,7 +40854,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 143,
+                            lineNumber: 164,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -40835,28 +40873,41 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 171,
+                            lineNumber: 202,
                             columnNumber: 14
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                            path: "/movies/genres/:genreName",
+                            element: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                                to: "/singup",
+                                replace: true
+                            }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                children: "Holaaaa"
+                            }, void 0, false)
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 216,
+                            columnNumber: 16
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 90,
+                    lineNumber: 111,
                     columnNumber: 11
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 89,
+                lineNumber: 110,
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 82,
+        lineNumber: 100,
         columnNumber: 7
     }, undefined);
 };
-_s(MainView, "O5FoZDoD3DJBCDBqgjBtP21PFJc=");
+_s(MainView, "Ody9jWcLlGapsznLZQOAkLLwM/w=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -47184,9 +47235,10 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "NavigationBar", ()=>NavigationBar);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
-const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite })=>{
+const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange, isChecked, unchecked })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar), {
             bg: "none",
@@ -47204,7 +47256,7 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite })=>{
                                     children: " My favorites "
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 12,
+                                    lineNumber: 15,
                                     columnNumber: 18
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -47213,7 +47265,7 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite })=>{
                                     children: "al perfil"
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 13,
+                                    lineNumber: 16,
                                     columnNumber: 19
                                 }, undefined)
                             ]
@@ -47227,7 +47279,7 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite })=>{
                                     children: " Home "
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 17,
+                                    lineNumber: 20,
                                     columnNumber: 17
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -47237,25 +47289,88 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite })=>{
                                     children: "Logout"
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 18,
+                                    lineNumber: 21,
                                     columnNumber: 17
                                 }, undefined)
                             ]
-                        }, void 0, true)
+                        }, void 0, true),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check, {
+                                    type: "checkbox",
+                                    "aria-label": "radio 1",
+                                    className: "box",
+                                    id: "comedy",
+                                    value: "comedy",
+                                    checked: isChecked,
+                                    onChange: (e)=>{
+                                        handleOnChange(e.target.value);
+                                        unchecked("horror");
+                                    }
+                                }, void 0, false, {
+                                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                    lineNumber: 24,
+                                    columnNumber: 15
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check.Label, {
+                                    children: "'comedy'"
+                                }, void 0, false, {
+                                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                    lineNumber: 26,
+                                    columnNumber: 16
+                                }, undefined)
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                            lineNumber: 23,
+                            columnNumber: 15
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check, {
+                                    type: "checkbox",
+                                    "aria-label": "radio 1",
+                                    id: "horror",
+                                    className: "box",
+                                    value: "horror",
+                                    checked: isChecked,
+                                    onChange: (e)=>{
+                                        handleOnChange(e.target.value);
+                                        unchecked("comedy");
+                                    }
+                                }, void 0, false, {
+                                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                    lineNumber: 28,
+                                    columnNumber: 16
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check.Label, {
+                                    children: "'horror'"
+                                }, void 0, false, {
+                                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                    lineNumber: 30,
+                                    columnNumber: 16
+                                }, undefined)
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                            lineNumber: 27,
+                            columnNumber: 16
+                        }, undefined)
                     ]
                 }, void 0, true)
             }, void 0, false, {
                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                lineNumber: 8,
+                lineNumber: 11,
                 columnNumber: 7
             }, undefined)
         }, void 0, false, {
             fileName: "src/components/navigation-bar/navigation-bar.jsx",
-            lineNumber: 7,
+            lineNumber: 10,
             columnNumber: 5
         }, undefined)
     }, void 0, false);
-}; //user&& renderizado condicional; renderizará la nav bar si user === true ya que en mainView no le puse condicional
+}; //Utilizar un replace?
+ //user&& renderizado condicional; renderizará la nav bar si user === true ya que en mainView no le puse condicional
 _c = NavigationBar;
 var _c;
 $RefreshReg$(_c, "NavigationBar");
@@ -47265,7 +47380,7 @@ $RefreshReg$(_c, "NavigationBar");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"m1UMa":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"m1UMa":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$4318 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

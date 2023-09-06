@@ -14,7 +14,7 @@ import  Col from "react-bootstrap/Col";
 import { nanoid } from "nanoid";
 import { Container } from "react-bootstrap";
 
-
+import { useParams } from "react-router-dom";
  
   
 
@@ -32,9 +32,6 @@ export const MainView = () => {
     
   
   }) 
-  
- /// 
- 
 
   const updateUser = user => {setUser(user);
   localStorage.setItem("user", JSON.stringify(user));///poque uso stryngfy???? asi se pasa los valores en local storage
@@ -66,26 +63,50 @@ export const MainView = () => {
         });
 
         setMovies(moviesFromApi);
+     
         
       });
      }, [token]);
      
-     
+     const [genero, setGenero]= useState("")
+     const [isChecked, setIsChecked] = useState(true);
+     const[byGenres,setByGenres]=useState([])
+  const handleOnChange = (genre) => {
+   
+    setIsChecked(!isChecked);
+    setGenero(genre)
+    console.log(isChecked)
+     console.log(genre)
+    
+    let movGenre= movies.filter(movie => movie.genre.includes(genre))
+    setByGenres(movGenre)
+    if( isChecked == false){setByGenres([])}////
+   
+    // window.location.replace(`/movies/genres/${genre}`)
+   
+  };
+
+  const unchecked =(id) => {document.getElementById(id).checked = false;}
+//const secondUncheck = (classNamw)=> document.getElementsByClassName('pepe')
      onLoggedOut=() => {
       setUser(null);
       setToken(null);
       localStorage.clear();
       window.location.replace("/")
-    }
+          }
+   
     
      return (
       <BrowserRouter>
         <NavigationBar
         onFavorite={onFavorites}
-        backHome = {(()=>{setFavorites("")})} 
+        backHome = {(()=>{setFavorites(""); setByGenres([]);window.location.reload()})} 
         user={user}
         onLoggedOut={onLoggedOut}
-        movies = {movies}/>
+        movies = {movies}
+        handleOnChange= {handleOnChange}
+        unchecked = {unchecked }
+        />
         <Row className="justify-content-md-center">
           <Routes>
             <Route
@@ -154,6 +175,16 @@ export const MainView = () => {
                           <FavmovCard movie={movies} user={user} favorites={favorites} updateUser={updateUser} onFavorites={onFavorites}/>
                       </>
                     )
+                    : byGenres.length > 0 ?(
+                      <>
+                      <span>{genero} Films</span>
+                     {byGenres.map((movie) => (
+                        <Col className="mb-4" key={movie.id} xs={6} md={3}>
+                          <MovieCard movie={movie} />
+                        </Col>
+                      ))}
+                      </>
+                    ) 
                    
                       : (
                     <>
@@ -182,6 +213,20 @@ export const MainView = () => {
                          </>)
                             }
                         />   
+               <Route
+                  path="/movies/genres/:genreName"
+                  element={
+                     !user ? (
+                         <Navigate to="/singup" replace />
+                     ) 
+                     
+                    
+                    : (<>
+                      
+                        Holaaaa
+                        </>)
+                           }
+                       />             
           </Routes>
         </Row>
       </BrowserRouter>
