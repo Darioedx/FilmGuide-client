@@ -69,18 +69,20 @@ export const MainView = () => {
      }, [token]);
      
      const [genero, setGenero]= useState("")
-     const [isChecked, setIsChecked] = useState(true);
+     let isChecked;
      const[byGenres,setByGenres]=useState([])
   const handleOnChange = (genre) => {
    
-    setIsChecked(!isChecked);
+    //isChecked = !isChecked;
     setGenero(genre)
     console.log(isChecked)
      console.log(genre)
+     console.log(genero)//este me muestra el valor genero anterior al clickiado
     
     let movGenre= movies.filter(movie => movie.genre.includes(genre))
     setByGenres(movGenre)
-    if( isChecked == false){setByGenres([])}////
+   
+    if( genre == genero){setByGenres([]), setGenero("")}////ajustar logica utilizando los valores de "genre" "genero" "true/false"
    
     // window.location.replace(`/movies/genres/${genre}`)
    
@@ -99,8 +101,9 @@ export const MainView = () => {
      return (
       <BrowserRouter>
         <NavigationBar
+        
         onFavorite={onFavorites}
-        backHome = {(()=>{setFavorites(""); setByGenres([]);window.location.reload()})} 
+        backHome = {(()=>{setFavorites(""); setByGenres([]); window.location.replace("/")})} 
         user={user}
         onLoggedOut={onLoggedOut}
         movies = {movies}

@@ -40686,17 +40686,19 @@ const MainView = ()=>{
         token
     ]);
     const [genero, setGenero] = (0, _react.useState)("");
-    const [isChecked, setIsChecked] = (0, _react.useState)(true);
+    let isChecked;
     const [byGenres, setByGenres] = (0, _react.useState)([]);
     const handleOnChange = (genre)=>{
-        setIsChecked(!isChecked);
+        //isChecked = !isChecked;
         setGenero(genre);
         console.log(isChecked);
         console.log(genre);
+        console.log(genero) //este me muestra el valor genero anterior al clickiado
+        ;
         let movGenre = movies.filter((movie)=>movie.genre.includes(genre));
         setByGenres(movGenre);
-        if (isChecked == false) setByGenres([]);
-         ////
+        if (genre == genero) setByGenres([]), setGenero("");
+         ////ajustar logica utilizando los valores de "genre" "genero" "true/false"
     // window.location.replace(`/movies/genres/${genre}`)
     };
     const unchecked = (id)=>{
@@ -40716,7 +40718,7 @@ const MainView = ()=>{
                 backHome: ()=>{
                     setFavorites("");
                     setByGenres([]);
-                    window.location.reload();
+                    window.location.replace("/");
                 },
                 user: user,
                 onLoggedOut: onLoggedOut,
@@ -40725,7 +40727,7 @@ const MainView = ()=>{
                 unchecked: unchecked
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 101,
+                lineNumber: 103,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -40746,7 +40748,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 112,
+                            lineNumber: 115,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -40763,7 +40765,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 127,
+                            lineNumber: 130,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -40791,7 +40793,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 144,
+                            lineNumber: 147,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -40854,7 +40856,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 164,
+                            lineNumber: 167,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -40873,7 +40875,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 202,
+                            lineNumber: 205,
                             columnNumber: 14
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -40886,28 +40888,28 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 216,
+                            lineNumber: 219,
                             columnNumber: 16
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 111,
+                    lineNumber: 114,
                     columnNumber: 11
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 110,
+                lineNumber: 113,
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 100,
+        lineNumber: 102,
         columnNumber: 7
     }, undefined);
 };
-_s(MainView, "Ody9jWcLlGapsznLZQOAkLLwM/w=");
+_s(MainView, "HVXjrzpPzqL8FCtawmKBIE2Th4Q=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
