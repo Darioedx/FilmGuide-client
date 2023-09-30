@@ -47244,7 +47244,7 @@ var _reactRouterDom = require("react-router-dom");
 const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange, isChecked, unchecked })=>{
     const visibility = ()=>{
         onFavorite();
-        var x = document.getElementById("checkBox");
+        let x = document.getElementById("checkBox");
         if (x.style.display === "block") x.style.display = "none";
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
