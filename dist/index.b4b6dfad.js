@@ -40724,7 +40724,8 @@ const MainView = ()=>{
                 onLoggedOut: onLoggedOut,
                 movies: movies,
                 handleOnChange: handleOnChange,
-                unchecked: unchecked
+                unchecked: unchecked,
+                favorites: favorites
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
                 lineNumber: 103,
@@ -40748,7 +40749,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 115,
+                            lineNumber: 116,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -40765,7 +40766,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 130,
+                            lineNumber: 131,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -40793,7 +40794,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 147,
+                            lineNumber: 148,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -40856,7 +40857,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 167,
+                            lineNumber: 168,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -40875,7 +40876,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 205,
+                            lineNumber: 206,
                             columnNumber: 14
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -40888,18 +40889,18 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 219,
+                            lineNumber: 220,
                             columnNumber: 16
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 114,
+                    lineNumber: 115,
                     columnNumber: 11
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 113,
+                lineNumber: 114,
                 columnNumber: 9
             }, undefined)
         ]
@@ -47241,6 +47242,11 @@ var _react = require("react");
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange, isChecked, unchecked })=>{
+    const visibility = ()=>{
+        onFavorite();
+        var x = document.getElementById("checkBox");
+        if (x.style.display === "block") x.style.display = "none";
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar), {
             bg: "none",
@@ -47254,20 +47260,21 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange
                                     style: {},
                                     as: (0, _reactRouterDom.Link),
                                     to: "/",
-                                    onClick: onFavorite,
+                                    onClick: visibility,
                                     children: " My favorites "
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 15,
+                                    lineNumber: 21,
                                     columnNumber: 18
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
                                     as: (0, _reactRouterDom.Link),
                                     to: "/users",
+                                    onClick: visibility,
                                     children: "al perfil"
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 16,
+                                    lineNumber: 22,
                                     columnNumber: 19
                                 }, undefined)
                             ]
@@ -47281,7 +47288,7 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange
                                     children: " Home "
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 20,
+                                    lineNumber: 26,
                                     columnNumber: 17
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -47291,83 +47298,95 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange
                                     children: "Logout"
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 21,
+                                    lineNumber: 27,
                                     columnNumber: 17
                                 }, undefined)
                             ]
                         }, void 0, true),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            style: {
+                                display: "block"
+                            },
+                            id: "checkBox",
                             children: [
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check, {
-                                    type: "checkbox",
-                                    "aria-label": "radio 1",
-                                    className: "box",
-                                    id: "comedy",
-                                    value: "comedy",
-                                    checked: isChecked,
-                                    onChange: (e)=>{
-                                        handleOnChange(e.target.value);
-                                        unchecked("horror");
-                                    }
-                                }, void 0, false, {
-                                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 24,
-                                    columnNumber: 15
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check.Label, {
-                                    children: "'comedy'"
-                                }, void 0, false, {
-                                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 26,
-                                    columnNumber: 16
-                                }, undefined)
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                            lineNumber: 23,
-                            columnNumber: 15
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
-                            children: [
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check, {
-                                    type: "checkbox",
-                                    "aria-label": "radio 1",
-                                    id: "horror",
-                                    className: "box",
-                                    value: "horror",
-                                    checked: isChecked,
-                                    onChange: (e)=>{
-                                        handleOnChange(e.target.value);
-                                        unchecked("comedy");
-                                    }
-                                }, void 0, false, {
-                                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                    lineNumber: 28,
-                                    columnNumber: 16
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check.Label, {
-                                    children: "'horror'"
-                                }, void 0, false, {
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check, {
+                                            type: "checkbox",
+                                            "aria-label": "radio 1",
+                                            className: "box",
+                                            id: "comedy",
+                                            value: "comedy",
+                                            checked: isChecked,
+                                            onChange: (e)=>{
+                                                handleOnChange(e.target.value);
+                                                unchecked("horror");
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                            lineNumber: 31,
+                                            columnNumber: 15
+                                        }, undefined),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check.Label, {
+                                            children: "'comedy'"
+                                        }, void 0, false, {
+                                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                            lineNumber: 33,
+                                            columnNumber: 16
+                                        }, undefined)
+                                    ]
+                                }, void 0, true, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
                                     lineNumber: 30,
+                                    columnNumber: 15
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check, {
+                                            type: "checkbox",
+                                            "aria-label": "radio 1",
+                                            id: "horror",
+                                            className: "box",
+                                            value: "horror",
+                                            checked: isChecked,
+                                            onChange: (e)=>{
+                                                handleOnChange(e.target.value);
+                                                unchecked("comedy");
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                            lineNumber: 35,
+                                            columnNumber: 16
+                                        }, undefined),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check.Label, {
+                                            children: "'horror'"
+                                        }, void 0, false, {
+                                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                            lineNumber: 37,
+                                            columnNumber: 16
+                                        }, undefined)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                    lineNumber: 34,
                                     columnNumber: 16
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                            lineNumber: 27,
-                            columnNumber: 16
+                            lineNumber: 29,
+                            columnNumber: 14
                         }, undefined)
                     ]
                 }, void 0, true)
             }, void 0, false, {
                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                lineNumber: 11,
+                lineNumber: 17,
                 columnNumber: 7
             }, undefined)
         }, void 0, false, {
             fileName: "src/components/navigation-bar/navigation-bar.jsx",
-            lineNumber: 10,
+            lineNumber: 16,
             columnNumber: 5
         }, undefined)
     }, void 0, false);

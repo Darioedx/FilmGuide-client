@@ -30,7 +30,7 @@ export const MainView = () => {
   const [favorites, setFavorites] = useState("");
   const onFavorites=(()=>{setFavorites(user.FavoritesMovies);
     
-  
+                         
   }) 
 
   const updateUser = user => {setUser(user);
@@ -109,6 +109,7 @@ export const MainView = () => {
         movies = {movies}
         handleOnChange= {handleOnChange}
         unchecked = {unchecked }
+        favorites={favorites}
         />
         <Row className="justify-content-md-center">
           <Routes>
