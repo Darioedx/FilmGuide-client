@@ -12,10 +12,7 @@ import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import  Row from "react-bootstrap/Row";
 import  Col from "react-bootstrap/Col";
 import { nanoid } from "nanoid";
-import { Container } from "react-bootstrap";
 
-import { useParams } from "react-router-dom";
- 
   
 
 export const MainView = () => {
