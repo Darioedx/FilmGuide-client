@@ -3,7 +3,13 @@ import { Button, Card} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 //hola
-
+const visibility= () =>{
+  
+   let x = document.getElementById("checkBox");
+   if (x.style.display === 'block') {
+     x.style.display = 'none';
+   } 
+ }
 
 
 export const MovieCard = ({ movie}) => {
@@ -15,7 +21,7 @@ export const MovieCard = ({ movie}) => {
         <Card.Text>{movie.director}</Card.Text>
         
         <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-          <Button  variant="link ">Open</Button>
+          <Button onClick={visibility}  variant="link ">Open</Button>
         </Link>
       </Card.Body>
     </Card>

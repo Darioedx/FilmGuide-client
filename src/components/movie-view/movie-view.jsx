@@ -7,6 +7,14 @@ import { nanoid } from "nanoid";
 
 
 export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
+
+  const visibility= () =>{
+  
+    let x = document.getElementById("checkBox");
+    if (x.style.display === 'none') {
+      x.style.display = 'block';
+    } 
+  }
    
   const { movieId } = useParams();
  
@@ -125,7 +133,7 @@ export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
      
     <> 
       <Link to={`/`}>
-        <Button style={{cursor: "pointer"}} className="m-3" variant="outline-warning">Back</Button>
+        <Button onClick={visibility} style={{cursor: "pointer"}} className="m-3" variant="outline-warning">Back</Button>
       </Link>   
       <Link to={`/`}>
       <Button onClick={addFavorite} style={{cursor: "pointer"}} className="m-3" variant="outline-warning">Add to favorites</Button>
