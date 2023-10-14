@@ -6,14 +6,15 @@ import { nanoid } from "nanoid";
 //generate ramdom number for  key
 
 
-export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
+export const MovieView = ({user ,movies, updateUser}) => {
 
   const visibility= () =>{
   
     let x = document.getElementById("checkBox");
     if (x.style.display === 'none') {
-      x.style.display = 'block';
+      x.style.display = 'inline-flex';
     } 
+   
   }
    
   const { movieId } = useParams();
@@ -41,6 +42,7 @@ export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
         });
         if (movieIsthere){
           alert("Movie is allready there¡¡¡¡¡")
+          window.location.replace('/')
         }
     
 /////if movie no allready added, continue...
@@ -70,16 +72,17 @@ export const MovieView = ({user ,movies, updateUser,onFavorite}) => {
             updateUser(user);
             
             alert("Successfully added movie");
-              
-              
-              
+           
+            window.location.replace('/')
+            
           }
       })
+         
          .catch(e => {
             alert(e);
       })}}
   
-  
+    
       
       
    

@@ -1,19 +1,19 @@
 
-import { Navbar, Container, Nav,Form ,Dropdown} from "react-bootstrap";
+import { Navbar, Container, Nav,Form ,Col, Row} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
-export const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange,isChecked, unchecked, }) => {
+export const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange,isChecked, unchecked,favorites }) => {
   const visibility= () =>{
    onFavorite();
     let x = document.getElementById("checkBox");
-    if (x.style.display === 'block') {
+    if (x.style.display === 'inline-flex') {
       x.style.display = 'none';
     } 
   }
   const deschek = (x)=>{
     const genreTounchkd = ["horror",  "comedy", "drama","thriller"];
-    ///filtrar array con el argumento
+
     const result = genreTounchkd.filter((genres) => genres != x);
     result.forEach(element => {
           unchecked(element)
@@ -22,9 +22,18 @@ export const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleO
 
   }
 
+ const checkBstyle={
+
+  
+     
+      display: 'inline-flex',
+  
+     
+  }
+
 return (<>
     <Navbar bg="none" expand="lg">
-      <Container>
+      <Container fluid>
                
          {user && (<>
              <>
@@ -36,7 +45,10 @@ return (<>
                 <Nav.Link as={Link} to="/" onClick={backHome}> Home </Nav.Link>
                 <Nav.Link as={Link} to="/signup" onClick={onLoggedOut}>Logout</Nav.Link>
               </>
-             <div style={{display:"block"}} id="checkBox">
+              <Row style={{position: 'absolute', top:'100%', left:'33%'}}>
+              <div style={checkBstyle} id="checkBox">
+            
+            
              <Form >
                <Form.Check type= "checkbox" aria-label="radio 1"  className="box" id="comedy" value="comedy"checked={isChecked} onChange={(e)=>{handleOnChange(e.target.value)
                 ;deschek(e.target.value)}}/>
@@ -47,7 +59,7 @@ return (<>
                 ;deschek(e.target.value)}}/>
                <Form.Check.Label>'horror'</Form.Check.Label>             
              </Form>
-             <Form>
+             <Form >
                <Form.Check type= "checkbox" aria-label="radio 1" id="drama" className="box" value="drama" checked={isChecked} onChange={(e)=>{handleOnChange(e.target.value)
                 ;deschek(e.target.value)}}/>
                <Form.Check.Label>'drama'</Form.Check.Label>             
@@ -57,8 +69,10 @@ return (<>
                 ;deschek(e.target.value)}}/>
                <Form.Check.Label>'thriller'</Form.Check.Label>             
              </Form>
-              
-              </div>
+            
+          
+             </div>
+             </Row>
            </> 
         
               

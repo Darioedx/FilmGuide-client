@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const visibility= () =>{
   
    let x = document.getElementById("checkBox");
-   if (x.style.display === 'block') {
+   if (x.style.display === 'inline-flex') {
      x.style.display = 'none';
    } 
  }
