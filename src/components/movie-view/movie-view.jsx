@@ -12,7 +12,7 @@ export const MovieView = ({user ,movies, updateUser}) => {
   
     let x = document.getElementById("checkBox");
     if (x.style.display === 'none') {
-      x.style.display = 'inline-flex';
+      x.style.display = 'block';
     } 
    
   }
