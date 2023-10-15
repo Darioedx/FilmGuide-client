@@ -3,9 +3,9 @@ import { Navbar, Container, Nav,Form ,Col, Row} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
-export const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange,isChecked, unchecked,favorites }) => {
+export const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange,isChecked, unchecked,}) => {
   const visibility= () =>{
-   onFavorite();
+  
     let x = document.getElementById("checkBox");
     if (x.style.display === 'block') {
       x.style.display = 'none';
@@ -39,8 +39,8 @@ return (<>
              <Row >
                 <Col style={{}}  >
              <>
-                 <Nav.Link style={checkBstyle}as={Link} to="/"  onClick={visibility}  > My favorites </Nav.Link>
-                  <Nav.Link style={checkBstyle} as={Link} to="/users"  onClick={visibility}>al perfil</Nav.Link>
+                 <Nav.Link style={checkBstyle}as={Link} to="/"  onClick={onFavorite}  > My favorites </Nav.Link>
+                  <Nav.Link style={checkBstyle} as={Link} to="/users"  >al perfil</Nav.Link>
              </>
           
               <>
@@ -49,7 +49,7 @@ return (<>
               </>  </Col>
               </Row>
               <Row style={{}}>
-              <Col style={{displa:'block' }}  id="checkBox">
+              <Col style={{display:'block' }}  id="checkBox">
             
             
              <Form style={checkBstyle} >

@@ -6,13 +6,15 @@ import { Link } from "react-router-dom";
 const visibility= () =>{
   
    let x = document.getElementById("checkBox");
-   if (x.style.display === 'block') {
-     x.style.display = 'none';
+   if (x.style.display === 'none') {
+     x.style.display = 'block';
    } 
+   
  }
 
 
 export const MovieCard = ({ movie}) => {
+  visibility()
   return (
     <Card className="h-100 mt-5"  style={{ border: "5px solid #8b7e07",  }}>
       <Card.Img   variant="top" src={movie.image} alt="movie image"/>
@@ -21,7 +23,7 @@ export const MovieCard = ({ movie}) => {
         <Card.Text>{movie.director}</Card.Text>
         
         <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-          <Button onClick={visibility}  variant="link ">Open</Button>
+          <Button  variant="link ">Open</Button>
         </Link>
       </Card.Body>
     </Card>

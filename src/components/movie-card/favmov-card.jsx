@@ -1,12 +1,19 @@
 import PropTypes from "prop-types";
 import { Button, Card, Col, Row} from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+const visibility= () =>{
+   
+  let x = document.getElementById("checkBox");
+  if (x.style.display === 'block') {
+    x.style.display = 'none';
+  } 
+}
 
 export const FavmovCard = ({ movie, favorites, user, updateUser}) => {
   const filteredMovies = movie.filter((movie) => favorites.includes(movie.id));
   const token = localStorage.getItem("token");
-
+  
+  visibility()
   const delFavorite = (id) => {
     fetch(`https://movies-guide.herokuapp.com/users/${user.Username}/movies/${id}`, {
       method: "DELETE",

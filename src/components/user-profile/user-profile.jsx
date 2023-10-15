@@ -1,10 +1,17 @@
 import { useState } from "react";
 import { Card, Col, Form, Button ,Link} from "react-bootstrap";
-
+const visibility= () =>{
+  
+    let x = document.getElementById("checkBox");
+    if (x.style.display === 'block') {
+      x.style.display = 'none';
+    } 
+  }
 
 
 export const ProfileView = ({ token , onLoggedOut,updateUser, user}) => {
-
+    
+   visibility()
     const [Username, setUsername] = useState("");
     const [Password, setPassword] = useState("");
     const [Email, setEmail] = useState("");

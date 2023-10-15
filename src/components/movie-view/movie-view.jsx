@@ -4,18 +4,19 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { nanoid } from "nanoid";
 //generate ramdom number for  key
-
+const visibility= () =>{
+  
+  let x = document.getElementById("checkBox");
+  if (x.style.display ='block') {
+    x.style.display = 'none';
+  } 
+ 
+}
 
 export const MovieView = ({user ,movies, updateUser}) => {
 
-  const visibility= () =>{
   
-    let x = document.getElementById("checkBox");
-    if (x.style.display === 'none') {
-      x.style.display = 'block';
-    } 
-   
-  }
+  visibility()
    
   const { movieId } = useParams();
  
@@ -42,7 +43,7 @@ export const MovieView = ({user ,movies, updateUser}) => {
         });
         if (movieIsthere){
           alert("Movie is allready there¡¡¡¡¡")
-          window.location.replace('/')
+         // window.location.replace('/')
         }
     
 /////if movie no allready added, continue...
@@ -73,8 +74,8 @@ export const MovieView = ({user ,movies, updateUser}) => {
             
             alert("Successfully added movie");
            
-            window.location.replace('/')
-            
+            //window.location.replace('/')
+           
           }
       })
          
