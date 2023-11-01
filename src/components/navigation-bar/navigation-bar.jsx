@@ -4,15 +4,9 @@ import { Link } from "react-router-dom";
 
 
 export const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange,isChecked, unchecked,}) => {
-  const visibility= () =>{
   
-    let x = document.getElementById("checkBox");
-    if (x.style.display === 'block') {
-      x.style.display = 'none';
-    } 
-  }
   const deschek = (x)=>{
-    const genreTounchkd = ["horror",  "comedy", "drama","thriller"];
+    const genreTounchkd = ["horror",  "comedy", "drama","thriller","western","adventure"];
 
     const result = genreTounchkd.filter((genres) => genres != x);
     result.forEach(element => {
@@ -26,8 +20,8 @@ export const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleO
 
        
    display : 'inline-flex',
-     padding: '8px',
- textDecoration: 'underline'
+   padding: '7px',
+   textDecoration: 'underline'
      
   }
 
@@ -35,9 +29,12 @@ return (<>
     <Navbar bg="none" expand="lg">
       <Container >
                
-         {user && (<> <Nav.Link as={Link} style={{position:'absolute', right: '-15%', top: '-25%'}} to="/signup" onClick={onLoggedOut}>Logout</Nav.Link>
-             <Row >
-                <Col style={{}}  >
+         {user && (<>
+             <Row style={{width:'100%'}}>
+                 <Col lg={12} style={{textAlign:'center',}} >
+                 <Nav.Link  style={checkBstyle} as={Link}  to="/signup" onClick={onLoggedOut}>Logout</Nav.Link>
+                 </Col>
+                 <Col lg={12} style={{textAlign:'center',}} >
              <>
                  <Nav.Link style={checkBstyle}as={Link} to="/"  onClick={onFavorite}  > My favorites </Nav.Link>
                   <Nav.Link style={checkBstyle} as={Link} to="/users"  >al perfil</Nav.Link>
@@ -47,9 +44,8 @@ return (<>
                 <Nav.Link as={Link} style={checkBstyle} to="/" onClick={backHome}> Home </Nav.Link>
                 
               </>  </Col>
-              </Row>
-              <Row style={{}}>
-              <Col style={{display:'block' }}  id="checkBox">
+             
+              <Col   style={{display:'block',textAlign:'center', }}  id="checkBox">
             
             
              <Form style={checkBstyle} >
@@ -72,7 +68,16 @@ return (<>
                 ;deschek(e.target.value)}}/>
                <Form.Check.Label>'thriller'</Form.Check.Label>             
              </Form>
-            
+             <Form style={checkBstyle}>
+               <Form.Check type= "checkbox"  aria-label="radio 1" id="western" className="box" value="western" checked={isChecked} onChange={(e)=>{handleOnChange(e.target.value)
+                ;deschek(e.target.value)}}/>
+               <Form.Check.Label>'western'</Form.Check.Label>             
+             </Form>
+             <Form style={checkBstyle}>
+               <Form.Check type= "checkbox"  aria-label="radio 1" id="adventure" className="box" value="adventure" checked={isChecked} onChange={(e)=>{handleOnChange(e.target.value)
+                ;deschek(e.target.value)}}/>
+               <Form.Check.Label>'adventure'</Form.Check.Label>             
+             </Form>
           
              </Col>
              </Row>

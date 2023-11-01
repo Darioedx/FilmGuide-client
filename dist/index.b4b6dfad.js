@@ -2953,8 +2953,8 @@ var _mainView = require("./components/main-view/main-view");
 const containerStyle = {
     border: "3px solid #8b7e07",
     width: "75%",
-    marginTop: "2%",
-    paddingBottom: "2%",
+    marginTop: "5%",
+    paddingBottom: "7%",
     marginBottom: "2%"
 };
 const App = ()=>{
@@ -40827,23 +40827,15 @@ const MainView = ()=>{
                                         onFavorites: onFavorites
                                     }, void 0, false, void 0, void 0)
                                 }, void 0, false) : byGenres.length > 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                                    children: [
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                            children: [
-                                                genero,
-                                                " Films"
-                                            ]
-                                        }, void 0, true, void 0, void 0),
-                                        byGenres.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                                className: "mb-4",
-                                                xs: 6,
-                                                md: 3,
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                                    movie: movie
-                                                }, void 0, false, void 0, void 0)
-                                            }, movie.id, false, void 0, void 0))
-                                    ]
-                                }, void 0, true) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                    children: byGenres.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                            className: "mb-4",
+                                            xs: 6,
+                                            md: 3,
+                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                                movie: movie
+                                            }, void 0, false, void 0, void 0)
+                                        }, movie.id, false, void 0, void 0))
+                                }, void 0, false) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                     children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                             className: "mb-4",
                                             xs: 6,
@@ -40877,19 +40869,6 @@ const MainView = ()=>{
                             fileName: "src/components/main-view/main-view.jsx",
                             lineNumber: 203,
                             columnNumber: 14
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                            path: "/movies/genres/:genreName",
-                            element: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
-                                to: "/singup",
-                                replace: true
-                            }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                                children: "Holaaaa"
-                            }, void 0, false)
-                        }, void 0, false, {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 217,
-                            columnNumber: 16
                         }, undefined)
                     ]
                 }, void 0, true, {
@@ -46558,8 +46537,7 @@ var _s = $RefreshSig$();
 //generate ramdom number for  key
 const visibility = ()=>{
     let x = document.getElementById("checkBox");
-    x.style.display = "block";
-    x.style.display = "none";
+    if (x.style.display === "block") x.style.display = "none";
 };
 const MovieView = ({ user, movies, updateUser })=>{
     _s();
@@ -47260,16 +47238,14 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange, isChecked, unchecked })=>{
-    const visibility = ()=>{
-        let x = document.getElementById("checkBox");
-        if (x.style.display === "block") x.style.display = "none";
-    };
     const deschek = (x)=>{
         const genreTounchkd = [
             "horror",
             "comedy",
             "drama",
-            "thriller"
+            "thriller",
+            "western",
+            "adventure"
         ];
         const result = genreTounchkd.filter((genres)=>genres != x);
         result.forEach((element)=>{
@@ -47278,7 +47254,7 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange
     };
     const checkBstyle = {
         display: "inline-flex",
-        padding: "8px",
+        padding: "7px",
         textDecoration: "underline"
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -47287,26 +47263,37 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange
             expand: "lg",
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
                 children: user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                    children: [
-                        " ",
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
-                            as: (0, _reactRouterDom.Link),
-                            style: {
-                                position: "absolute",
-                                right: "-15%",
-                                top: "-25%"
-                            },
-                            to: "/signup",
-                            onClick: onLoggedOut,
-                            children: "Logout"
-                        }, void 0, false, {
-                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                            lineNumber: 38,
-                            columnNumber: 23
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                style: {},
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                        style: {
+                            width: "100%"
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                lg: 12,
+                                style: {
+                                    textAlign: "center"
+                                },
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
+                                    style: checkBstyle,
+                                    as: (0, _reactRouterDom.Link),
+                                    to: "/signup",
+                                    onClick: onLoggedOut,
+                                    children: "Logout"
+                                }, void 0, false, {
+                                    fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                    lineNumber: 35,
+                                    columnNumber: 18
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                lineNumber: 34,
+                                columnNumber: 18
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                lg: 12,
+                                style: {
+                                    textAlign: "center"
+                                },
                                 children: [
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                         children: [
@@ -47318,7 +47305,7 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange
                                                 children: " My favorites "
                                             }, void 0, false, {
                                                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                                lineNumber: 42,
+                                                lineNumber: 39,
                                                 columnNumber: 18
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
@@ -47328,7 +47315,7 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange
                                                 children: "al perfil"
                                             }, void 0, false, {
                                                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                                lineNumber: 43,
+                                                lineNumber: 40,
                                                 columnNumber: 19
                                             }, undefined)
                                         ]
@@ -47342,7 +47329,7 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange
                                             children: " Home "
                                         }, void 0, false, {
                                             fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                            lineNumber: 47,
+                                            lineNumber: 44,
                                             columnNumber: 17
                                         }, undefined)
                                     }, void 0, false),
@@ -47350,19 +47337,13 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                lineNumber: 40,
-                                columnNumber: 17
-                            }, undefined)
-                        }, void 0, false, {
-                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                            lineNumber: 39,
-                            columnNumber: 14
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                            style: {},
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                lineNumber: 37,
+                                columnNumber: 18
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                 style: {
-                                    display: "block"
+                                    display: "block",
+                                    textAlign: "center"
                                 },
                                 id: "checkBox",
                                 children: [
@@ -47382,20 +47363,20 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange
                                                 }
                                             }, void 0, false, {
                                                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                                lineNumber: 56,
+                                                lineNumber: 52,
                                                 columnNumber: 16
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check.Label, {
                                                 children: "'comedy'"
                                             }, void 0, false, {
                                                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                                lineNumber: 58,
+                                                lineNumber: 54,
                                                 columnNumber: 16
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 55,
+                                        lineNumber: 51,
                                         columnNumber: 14
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
@@ -47414,20 +47395,20 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange
                                                 }
                                             }, void 0, false, {
                                                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                                lineNumber: 61,
+                                                lineNumber: 57,
                                                 columnNumber: 16
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check.Label, {
                                                 children: "'horror'"
                                             }, void 0, false, {
                                                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                                lineNumber: 63,
+                                                lineNumber: 59,
                                                 columnNumber: 16
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 60,
+                                        lineNumber: 56,
                                         columnNumber: 14
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
@@ -47446,20 +47427,20 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange
                                                 }
                                             }, void 0, false, {
                                                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                                lineNumber: 66,
+                                                lineNumber: 62,
                                                 columnNumber: 16
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check.Label, {
                                                 children: "'drama'"
                                             }, void 0, false, {
                                                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                                lineNumber: 68,
+                                                lineNumber: 64,
                                                 columnNumber: 16
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 65,
+                                        lineNumber: 61,
                                         columnNumber: 14
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
@@ -47478,43 +47459,107 @@ const NavigationBar = ({ user, onLoggedOut, backHome, onFavorite, handleOnChange
                                                 }
                                             }, void 0, false, {
                                                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                                lineNumber: 71,
+                                                lineNumber: 67,
                                                 columnNumber: 16
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check.Label, {
                                                 children: "'thriller'"
                                             }, void 0, false, {
                                                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                                lineNumber: 73,
+                                                lineNumber: 69,
                                                 columnNumber: 16
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                        lineNumber: 70,
+                                        lineNumber: 66,
+                                        columnNumber: 14
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
+                                        style: checkBstyle,
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check, {
+                                                type: "checkbox",
+                                                "aria-label": "radio 1",
+                                                id: "western",
+                                                className: "box",
+                                                value: "western",
+                                                checked: isChecked,
+                                                onChange: (e)=>{
+                                                    handleOnChange(e.target.value);
+                                                    deschek(e.target.value);
+                                                }
+                                            }, void 0, false, {
+                                                fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                                lineNumber: 72,
+                                                columnNumber: 16
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check.Label, {
+                                                children: "'western'"
+                                            }, void 0, false, {
+                                                fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                                lineNumber: 74,
+                                                columnNumber: 16
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                        lineNumber: 71,
+                                        columnNumber: 14
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
+                                        style: checkBstyle,
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check, {
+                                                type: "checkbox",
+                                                "aria-label": "radio 1",
+                                                id: "adventure",
+                                                className: "box",
+                                                value: "adventure",
+                                                checked: isChecked,
+                                                onChange: (e)=>{
+                                                    handleOnChange(e.target.value);
+                                                    deschek(e.target.value);
+                                                }
+                                            }, void 0, false, {
+                                                fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                                lineNumber: 77,
+                                                columnNumber: 16
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Check.Label, {
+                                                children: "'adventure'"
+                                            }, void 0, false, {
+                                                fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                                lineNumber: 79,
+                                                columnNumber: 16
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                                        lineNumber: 76,
                                         columnNumber: 14
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                                lineNumber: 52,
+                                lineNumber: 48,
                                 columnNumber: 15
                             }, undefined)
-                        }, void 0, false, {
-                            fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                            lineNumber: 51,
-                            columnNumber: 15
-                        }, undefined)
-                    ]
-                }, void 0, true)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/navigation-bar/navigation-bar.jsx",
+                        lineNumber: 33,
+                        columnNumber: 14
+                    }, undefined)
+                }, void 0, false)
             }, void 0, false, {
                 fileName: "src/components/navigation-bar/navigation-bar.jsx",
-                lineNumber: 36,
+                lineNumber: 30,
                 columnNumber: 7
             }, undefined)
         }, void 0, false, {
             fileName: "src/components/navigation-bar/navigation-bar.jsx",
-            lineNumber: 35,
+            lineNumber: 29,
             columnNumber: 5
         }, undefined)
     }, void 0, false);
@@ -47545,7 +47590,9 @@ var _reactBootstrap = require("react-bootstrap");
 var _s = $RefreshSig$();
 const visibility = ()=>{
     let x = document.getElementById("checkBox");
-    if (x.style.display === "block") x.style.display = "none";
+    if (x) {
+        if (x.style.display === "block") x.style.display = "none";
+    }
 };
 const ProfileView = ({ token, onLoggedOut, updateUser, user })=>{
     _s();
@@ -47612,7 +47659,7 @@ const ProfileView = ({ token, onLoggedOut, updateUser, user })=>{
                             children: "Username:"
                         }, void 0, false, {
                             fileName: "src/components/user-profile/user-profile.jsx",
-                            lineNumber: 86,
+                            lineNumber: 90,
                             columnNumber: 7
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -47625,13 +47672,13 @@ const ProfileView = ({ token, onLoggedOut, updateUser, user })=>{
                             className: "bg-light"
                         }, void 0, false, {
                             fileName: "src/components/user-profile/user-profile.jsx",
-                            lineNumber: 87,
+                            lineNumber: 91,
                             columnNumber: 7
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/user-profile/user-profile.jsx",
-                    lineNumber: 85,
+                    lineNumber: 89,
                     columnNumber: 3
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -47640,7 +47687,7 @@ const ProfileView = ({ token, onLoggedOut, updateUser, user })=>{
                             children: "Password:"
                         }, void 0, false, {
                             fileName: "src/components/user-profile/user-profile.jsx",
-                            lineNumber: 98,
+                            lineNumber: 102,
                             columnNumber: 7
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -47656,13 +47703,13 @@ const ProfileView = ({ token, onLoggedOut, updateUser, user })=>{
                             className: "bg-light"
                         }, void 0, false, {
                             fileName: "src/components/user-profile/user-profile.jsx",
-                            lineNumber: 99,
+                            lineNumber: 103,
                             columnNumber: 7
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/user-profile/user-profile.jsx",
-                    lineNumber: 97,
+                    lineNumber: 101,
                     columnNumber: 3
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -47671,7 +47718,7 @@ const ProfileView = ({ token, onLoggedOut, updateUser, user })=>{
                             children: "Email:"
                         }, void 0, false, {
                             fileName: "src/components/user-profile/user-profile.jsx",
-                            lineNumber: 110,
+                            lineNumber: 114,
                             columnNumber: 7
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -47682,13 +47729,13 @@ const ProfileView = ({ token, onLoggedOut, updateUser, user })=>{
                             required: true
                         }, void 0, false, {
                             fileName: "src/components/user-profile/user-profile.jsx",
-                            lineNumber: 111,
+                            lineNumber: 115,
                             columnNumber: 7
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/user-profile/user-profile.jsx",
-                    lineNumber: 109,
+                    lineNumber: 113,
                     columnNumber: 3
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -47697,7 +47744,7 @@ const ProfileView = ({ token, onLoggedOut, updateUser, user })=>{
                             children: "Birthdate:"
                         }, void 0, false, {
                             fileName: "src/components/user-profile/user-profile.jsx",
-                            lineNumber: 121,
+                            lineNumber: 125,
                             columnNumber: 7
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -47707,13 +47754,13 @@ const ProfileView = ({ token, onLoggedOut, updateUser, user })=>{
                             required: true
                         }, void 0, false, {
                             fileName: "src/components/user-profile/user-profile.jsx",
-                            lineNumber: 122,
+                            lineNumber: 126,
                             columnNumber: 7
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/user-profile/user-profile.jsx",
-                    lineNumber: 120,
+                    lineNumber: 124,
                     columnNumber: 3
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -47722,7 +47769,7 @@ const ProfileView = ({ token, onLoggedOut, updateUser, user })=>{
                     children: "Update info"
                 }, void 0, false, {
                     fileName: "src/components/user-profile/user-profile.jsx",
-                    lineNumber: 132,
+                    lineNumber: 136,
                     columnNumber: 3
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -47732,13 +47779,13 @@ const ProfileView = ({ token, onLoggedOut, updateUser, user })=>{
                     children: "delete"
                 }, void 0, false, {
                     fileName: "src/components/user-profile/user-profile.jsx",
-                    lineNumber: 133,
+                    lineNumber: 137,
                     columnNumber: 3
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/user-profile/user-profile.jsx",
-            lineNumber: 84,
+            lineNumber: 88,
             columnNumber: 2
         }, undefined)
     }, void 0, false);
@@ -47769,7 +47816,7 @@ var _reactRouter = require("react-router");
 var _reactRouterDom = require("react-router-dom");
 var _nanoid = require("nanoid");
 var _s = $RefreshSig$();
-const SimilarMov = ({ user, movies, updateUser, onFavorite })=>{
+const SimilarMov = ({ movies })=>{
     _s();
     const { movieId } = (0, _reactRouter.useParams)();
     token = localStorage.getItem("token");

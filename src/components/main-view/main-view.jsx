@@ -178,7 +178,7 @@ export const MainView = () => {
                     )
                     : byGenres.length > 0 ?(
                       <>
-                      <span>{genero} Films</span>
+                     
                      {byGenres.map((movie) => (
                         <Col className="mb-4" key={movie.id} xs={6} md={3}>
                           <MovieCard movie={movie} />
@@ -214,20 +214,7 @@ export const MainView = () => {
                          </>)
                             }
                         />   
-               <Route
-                  path="/movies/genres/:genreName"
-                  element={
-                     !user ? (
-                         <Navigate to="/singup" replace />
-                     ) 
-                     
-                    
-                    : (<>
-                      
-                        Holaaaa
-                        </>)
-                           }
-                       />             
+                   
           </Routes>
         </Row>
       </BrowserRouter>

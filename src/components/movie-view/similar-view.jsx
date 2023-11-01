@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 //generate ramdom number for  key
 
 
-export const SimilarMov = ({user ,movies, updateUser,onFavorite}) => {
+export const SimilarMov = ({movies}) => {
 
   const { movieId } = useParams();
  

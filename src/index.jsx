@@ -9,7 +9,7 @@ import "./index.scss";
 import { MainView } from "./components/main-view/main-view";
 // Main component (will eventually use all the others)
 
-const containerStyle= {border: "3px solid #8b7e07",  width:"75%", marginTop: "2%", paddingBottom:"2%", marginBottom:"2%"}
+const containerStyle= {border: "3px solid #8b7e07",  width:"75%", marginTop: "5%", paddingBottom:"7%", marginBottom:"2%"}
 
 const App = () => {
   

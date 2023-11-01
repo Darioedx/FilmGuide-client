@@ -7,7 +7,7 @@ import { nanoid } from "nanoid";
 const visibility= () =>{
   
   let x = document.getElementById("checkBox");
-  if (x.style.display ='block') {
+  if (x.style.display ==='block') {
     x.style.display = 'none';
   } 
  
