@@ -1,4 +1,4 @@
-
+import PropTypes from "prop-types";
 import { Button, Form , Col, Card} from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -146,6 +146,14 @@ export const MovieView = ({user ,movies, updateUser}) => {
   </div>
    
   );
+
+  
+  
 };
             
  
+MovieView.propTypes = {
+  user: PropTypes.object.isRequired,
+  movies: PropTypes.array.isRequired,
+  updateUser: PropTypes.func.isRequired,
+};

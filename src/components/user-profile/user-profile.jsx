@@ -21,7 +21,7 @@ export const ProfileView = ({ token , onLoggedOut,updateUser, user}) => {
     const [Email, setEmail] = useState("");
     const [Birthdate, setBirthdate] = useState("");
    
-    
+    console.log(user.Birthday.slice(0, 10))
     
     const handleSubmit = event => {
       event.preventDefault(); 
@@ -84,7 +84,7 @@ export const ProfileView = ({ token , onLoggedOut,updateUser, user}) => {
 
  return(<>
  
- 
+
  <Form onSubmit={handleSubmit}>
   <Form.Group>
       <Form.Label>Username:</Form.Label>
@@ -124,12 +124,12 @@ export const ProfileView = ({ token , onLoggedOut,updateUser, user}) => {
   <Form.Group>
       <Form.Label>Birthdate:</Form.Label>
       <Form.Control
-                
+       
           type="date"
           value={Birthdate}
           onChange={e => setBirthdate(e.target.value)}
           required
-        
+         
       />
   </Form.Group>
  
