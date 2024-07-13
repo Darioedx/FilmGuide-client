@@ -11,7 +11,7 @@ Who — The users of your movie application. They will be movie enthusiasts who 
 
 #Built with
 
-React Redux React Bootstrap
+React  Bootstrap
 
 #Features
 
